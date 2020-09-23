@@ -1,0 +1,12 @@
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\bin\Debug\netcoreapp3.1\AdminModule.deps.json
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\bin\Debug\netcoreapp3.1\AdminModule.dll
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\bin\Debug\netcoreapp3.1\AdminModule.pdb
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\bin\Debug\netcoreapp3.1\E-Commerce.Core.dll
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\bin\Debug\netcoreapp3.1\E-Commerce.Core.pdb
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.csprojAssemblyReference.cache
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.AssemblyInfoInputs.cache
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.AssemblyInfo.cs
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.csproj.CopyComplete
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.dll
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.pdb
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\AdminModule\obj\Debug\netcoreapp3.1\AdminModule.csproj.CoreCompileInputs.cache
