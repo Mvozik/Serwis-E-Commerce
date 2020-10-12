@@ -5,98 +5,53 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using E_Commerce.Core.Data;
-using E_Commerce.Core.Entities;
+using E_Commerce.Shared.Data;
+using E_Commerce.Shared.Entities;
 using Mapster;
+using E_Commerce.ShopModule.Services.IService;
 
-namespace ShopModule.Controllers
+namespace E_Commerce.ShopModule.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AdvertsController : ControllerBase
     {
-        private readonly DataContext _context;
-
-        public AdvertsController(DataContext context)
+        private readonly IAdvertService _advertService;
+        public AdvertsController(DataContext context, IAdvertService advertService)
         {
-            _context = context;
+            _advertService = advertService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Advert>>> Getadverts()
         {
-            return await _context.adverts.ToListAsync();
+            return Ok();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Advert>> GetAdvert(int id)
+        public async Task<IActionResult> GetAdvert(int id)
         {
-            var advert = await _context.adverts.FindAsync(id);
-
-            if (advert == null)
-            {
-                return NotFound();
-            }
-
-            return advert;
+            return Ok(await _advertService.GetAdverts());
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAdvert(int id, Advert advert)
         {
-            if (id != advert.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(advert).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AdvertExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Advert>> PostAdvert(PostAdvertDto advert)
+        public async Task<ActionResult<Advert>> PostAdvert()
         {
-            var advert2 = advert.Adapt<Advert>();
-            _context.adverts.Add(advert2);
-            await _context.SaveChangesAsync();
-            return Ok(advert2);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Advert>> DeleteAdvert(int id)
         {
-            var advert = await _context.adverts.FindAsync(id);
-            if (advert == null)
-            {
-                return NotFound();
-            }
-
-            _context.adverts.Remove(advert);
-            await _context.SaveChangesAsync();
-
-            return advert;
+            return Ok();
         }
 
-        private bool AdvertExists(int id)
-        {
-            return _context.adverts.Any(e => e.Id == id);
-        }
     }
 }

@@ -1,9 +1,0 @@
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\bin\Debug\netcoreapp3.1\E-Commerce.Core.deps.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\bin\Debug\netcoreapp3.1\E-Commerce.Core.dll
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\obj\Debug\netcoreapp3.1\E-Commerce.Core.AssemblyInfoInputs.cache
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\obj\Debug\netcoreapp3.1\E-Commerce.Core.AssemblyInfo.cs
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\obj\Debug\netcoreapp3.1\E-Commerce.Core.csprojAssemblyReference.cache
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\bin\Debug\netcoreapp3.1\E-Commerce.Core.pdb
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\obj\Debug\netcoreapp3.1\E-Commerce.Core.dll
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\obj\Debug\netcoreapp3.1\E-Commerce.Core.pdb
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce.Core\E-Commerce.Core\obj\Debug\netcoreapp3.1\E-Commerce.Core.csproj.CoreCompileInputs.cache

@@ -12,13 +12,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using E_Commerce.Core.Models;
+using E_Commerce.Shared.Models;
 using System.Text;
-using E_Commerce.Core.Data;
+using E_Commerce.Shared.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore;
+using E_Commerce.ShopModule.Services.IService;
+using E_Commerce.ShopModule.Services;
 
 namespace E_Commerce
 {
@@ -34,6 +36,7 @@ namespace E_Commerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
 
             var jwtSettings = new JwtSettings();
@@ -42,16 +45,18 @@ namespace E_Commerce
             services.AddMvc(options=> { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<DataContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-            );
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+               );
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<DataContext>();
 
+            services.AddScoped<IAdvertService, AdvertService>();
+            services.AddScoped<IShoppingCardService, ShoppingCardService>();
 
             services.AddSwaggerGen(c=>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 
-                { Version="V1",Title="E-Commerce API",Description="Projekt In�ynierka" });
+                { Version="V1",Title="E-Commerce API",Description="My Project" });
 
                 var security = new Dictionary<string, IEnumerable<string>>
                 {
@@ -72,6 +77,8 @@ namespace E_Commerce
                 });
                 
             });
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,5 +112,8 @@ namespace E_Commerce
                 endpoints.MapControllers();
             });
         }
+
+
+
     }
 }
