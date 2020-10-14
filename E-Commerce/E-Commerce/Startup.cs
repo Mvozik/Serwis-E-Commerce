@@ -21,6 +21,11 @@ using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore;
 using E_Commerce.ShopModule.Services.IService;
 using E_Commerce.ShopModule.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Principal;
+using E_Commerce.Shared.Services;
+using E_Commerce.Shared.Services.IServices;
 
 namespace E_Commerce
 {
@@ -42,6 +47,28 @@ namespace E_Commerce
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Key)),
+                    ValidateIssuer = false,
+                    ValidateAudience=false,
+                    RequireExpirationTime=false,
+                    ValidateLifetime=true
+                };
+            });
+
+            
+
             services.AddMvc(options=> { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<DataContext>(options =>
@@ -52,7 +79,7 @@ namespace E_Commerce
 
             services.AddScoped<IAdvertService, AdvertService>();
             services.AddScoped<IShoppingCardService, ShoppingCardService>();
-
+            services.AddScoped<IIdentityService, IdentityService>();
             services.AddSwaggerGen(c=>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 

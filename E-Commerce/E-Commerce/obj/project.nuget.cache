@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "TuayMsdxfZra8k5MeA4QpHfpYGtlNi2rF0tqOASRrkJ3kHq0NeP9XW1tVJ+HcKD21HXzlktGNqOabxCGp3iYow==",
+  "dgSpecHash": "5t5jjNxaE+vu/N0FpzB+Vilf39FiKmdBlNU5yxLBWOLUjyTD/jLAY/k/uWwRuvNotYu5Cp7yy1EDdqGsUbZcoQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Piotr\\Documents\\Serwis-E-Commerce\\E-Commerce\\E-Commerce\\E-Commerce.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Piotr\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\Piotr\\.nuget\\packages\\mapster\\6.5.0\\mapster.6.5.0.nupkg.sha512",
+    "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.7\\microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",
     "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.7\\microsoft.aspnetcore.cryptography.keyderivation.3.1.7.nupkg.sha512",
     "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

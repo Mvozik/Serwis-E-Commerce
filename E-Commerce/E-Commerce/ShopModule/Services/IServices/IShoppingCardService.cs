@@ -1,5 +1,4 @@
-﻿using E_Commerce.Shared.Interfaces;
-using E_Commerce.ShopModule.Dtos;
+﻿using E_Commerce.ShopModule.Dtos;
 using E_Commerce.ShopModule.Dtos.ShoppingCardDtos;
 using System;
 using System.Collections.Generic;

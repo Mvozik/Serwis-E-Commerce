@@ -178,4 +178,4 @@ C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netco
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.csproj.CoreCompileInputs.cache
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Autofac.dll
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
