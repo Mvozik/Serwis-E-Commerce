@@ -25,6 +25,31 @@ namespace E_Commerce.Shared.Services
             _jwtSettings = jwtSettings;
         }
 
+        public async Task<AuthenticationResult> LoginAsync(UserPostLoginDto request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+
+            if(user==null)
+            {
+                return new AuthenticationResult
+                {
+                    Errors = new[] {"User does not exist"}
+                };
+            }
+            var userValidPassword = await _userManager.CheckPasswordAsync(user, request.Password);
+
+            if(!userValidPassword)
+            {
+                return new AuthenticationResult
+                {
+                    Errors = new[] { "Email or password is wrong" }
+                };
+            }
+
+            return GenerateAuthorizationForUser(user);
+
+        }
+
         public async Task<AuthenticationResult> RegisterAsync(UserPostRegistrationDto request)
         {
             
@@ -55,6 +80,12 @@ namespace E_Commerce.Shared.Services
                 };
             }
 
+            return GenerateAuthorizationForUser(newUser);
+
+        }
+
+        private AuthenticationResult GenerateAuthorizationForUser(IdentityUser newUser)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -77,7 +108,6 @@ namespace E_Commerce.Shared.Services
                 Success = true,
                 Token = tokenHandler.WriteToken(token)
             };
-
         }
     }
 }

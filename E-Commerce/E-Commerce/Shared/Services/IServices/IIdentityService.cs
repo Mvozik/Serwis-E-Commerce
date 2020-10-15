@@ -10,5 +10,6 @@ namespace E_Commerce.Shared.Services.IServices
     public interface IIdentityService
     {
         Task<AuthenticationResult> RegisterAsync(UserPostRegistrationDto request);
+        Task<AuthenticationResult> LoginAsync(UserPostLoginDto request);
     }
 }
