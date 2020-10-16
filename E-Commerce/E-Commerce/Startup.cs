@@ -21,11 +21,17 @@ using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore;
 using E_Commerce.ShopModule.Services.IService;
 using E_Commerce.ShopModule.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Principal;
+using E_Commerce.Shared.Services;
+using E_Commerce.Shared.Services.IServices;
 
 namespace E_Commerce
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,13 +42,35 @@ namespace E_Commerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddControllers();
 
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
-            services.AddMvc(options=> { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Key)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    RequireExpirationTime = false,
+                    ValidateLifetime = true
+                };
+            });
+
+
+
+            services.AddMvc(options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<DataContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
@@ -52,11 +80,11 @@ namespace E_Commerce
 
             services.AddScoped<IAdvertService, AdvertService>();
             services.AddScoped<IShoppingCardService, ShoppingCardService>();
-
-            services.AddSwaggerGen(c=>
+            services.AddScoped<IIdentityService, IdentityService>();
+            services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo 
-                { Version="V1",Title="E-Commerce API",Description="My Project" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                { Version = "V1", Title = "E-Commerce API", Description = "My Project" });
 
                 var security = new Dictionary<string, IEnumerable<string>>
                 {
@@ -64,21 +92,29 @@ namespace E_Commerce
                 };
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                { 
-                    Description="JWT AUTH",
-                    Name="Authorization",
-                    In=ParameterLocation.Header,
-                    Type=SecuritySchemeType.ApiKey
+                {
+                    Description = "JWT AUTH",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     { new OpenApiSecurityScheme{ Reference = new OpenApiReference{ Id="Bearer",Type=ReferenceType.SecurityScheme} },new List<string>() }
                 });
-                
+
             });
 
-           
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://localhost:44320");
+                                  });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,8 +125,8 @@ namespace E_Commerce
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger(c => 
-            { 
+            app.UseSwagger(c =>
+            {
                 c.SerializeAsV2 = true;
             });
 
@@ -99,11 +135,13 @@ namespace E_Commerce
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Api");
                 c.RoutePrefix = string.Empty;
             });
-            
+
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 

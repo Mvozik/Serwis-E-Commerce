@@ -18,5 +18,6 @@ namespace E_Commerce.Shared.Data
         public DbSet<Advert> adverts { get; set; }
         public DbSet<ShoppingCard> shoppingCards { get; set; }
         public DbSet<ShoppingCardItem> shoppingCardItems { get; set; }
+        
     }
 }
