@@ -8,5 +8,6 @@ namespace E_Commerce.Shared.Models
     public class JwtSettings
     {
         public string Key { get; set; }
+        public TimeSpan TokenLifeTime { get; set; }
     }
 }

@@ -1,0 +1,22 @@
+mat-card {
+  width: 182px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+mat-card:hover {
+  transform: scale(1.02);
+}
+.advert-photo {
+  width: 156px;
+  height: 130px;
+}
+.card-title {
+  font-size: medium;
+}
+
+.subtitle {
+  padding-bottom: 5px;
+}

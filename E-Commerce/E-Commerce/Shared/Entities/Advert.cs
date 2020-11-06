@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace E_Commerce.Shared.Entities
@@ -12,5 +13,6 @@ namespace E_Commerce.Shared.Entities
         public int Quantity { get; set; }
         public string Description { get; set; }
         public string Specification { get; set; }
+        public string PhotoFullPath { get; set; }
     }
 }

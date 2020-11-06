@@ -1,0 +1,67 @@
+<mat-carousel class="margined"
+  timings="250ms ease-in"
+  [autoplay]="true"
+  interval="5000"
+  color="accent"
+  maxWidth="1700px"
+  proportion="22"
+  slides="3"
+  [loop]="true"
+  [hideArrows]="false"
+  [hideIndicators]="false"
+  [useKeyboard]="true"
+  [useMouseWheel]="false"
+  orientation="ltr"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of slides; let i = index"
+    [image]="slide.image"
+    overlayColor="#00000000"
+    [hideOverlay]="false"
+  ></mat-carousel-slide>
+</mat-carousel>
+
+
+
+<h1 class="margined">Najczęściej kupowane</h1>
+
+<div class="adverts">
+  <app-advert-card class="sale"
+  [name]="'Philips 50PUS8804'"
+  [price]="'2332'" 
+  [photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card
+  [name]="'Philips 50PUS8804'"
+  [price]="'2332'" 
+  [photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card 
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card class="advert8" 
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card><app-advert-card class="advert9" 
+[name]="'Philips 50PUS8804'"
+[price]="'2332'" 
+[photoUrl]="'./../../../../../assets/photos/samsungs20.jpg'">
+</app-advert-card></div>
+

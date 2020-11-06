@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div class="grid-container">
+      <button routerLink="" mat-icon-button class="icon-button"><mat-icon mat-icon>home</mat-icon></button>
+      <div></div>
+      <button routerLink="koszyk" mat-icon-button class="icon-button"><mat-icon >shopping_basket</mat-icon></button>
+      <button *ngIf="!state" routerLink="logowanie" mat-icon-button ><mat-icon >account_box_outline</mat-icon></button>
+      <button *ngIf="state" routerLink="logowanie" (click)="logout()" mat-icon-button ><mat-icon >exit_to_app_outline</mat-icon></button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+ 

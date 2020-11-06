@@ -8,7 +8,7 @@ namespace E_Commerce.ShopModule.Dtos.ShoppingCardDtos
     public class AddAdvertToShoppingCard
     {
         public int ShoppingCardId { get; set; }
-        public int UserId { get; set; }
+        public int AdvertId { get; set; }
 
     }
 }

@@ -9,6 +9,13 @@ using E_Commerce.Shared.Data;
 using E_Commerce.Shared.Entities;
 using Mapster;
 using E_Commerce.ShopModule.Services.IService;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using E_Commerce.ShopModule.Dtos.AdvertDtos;
+using Microsoft.AspNetCore.Builder;
+using System.IO;
+using Microsoft.Net.Http.Headers;
+using System.Net.Http.Headers;
 
 namespace E_Commerce.ShopModule.Controllers
 {
@@ -22,35 +29,84 @@ namespace E_Commerce.ShopModule.Controllers
             _advertService = advertService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Advert>>> Getadverts()
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAdverts()
         {
-            return Ok();
+
+            var response = await _advertService.GetAdvertsAsync();
+            return Ok(response.Adapt<List<GetAdvertsDto>>());
+
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<IActionResult> GetAdvert(int id)
         {
-            return Ok(await _advertService.GetAdverts());
+            var response = await _advertService.GetAdvertByIdAsync(id);
+            return Ok(response.Adapt<GetAdvertsDto>());
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdvert(int id, Advert advert)
+
+        [HttpPut]
+        public async Task<IActionResult> PutAdvert(PutAdvertDto advert)
         {
-            return Ok();
+            var response = await _advertService.UpdateAdvertAsync(advert);
+            if (response.Success == false)
+            {
+                return BadRequest(new OperationFailedResponse { Errors = response.Errors });
+            }
+            return Ok(response.Id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Advert>> PostAdvert()
+        public async Task<IActionResult> PostAdvert(PostAdvertDto postAdvertDto)
         {
+            var response = await _advertService.PostAdvertAsync(postAdvertDto);
+            if(response.Success==false)
+            {
+                return BadRequest(new OperationFailedResponse { Errors = response.Errors });
+            }
+            var file = Request.Form.Files[0];
 
-            return Ok();
+            var folderName = Path.Combine("Resources", "Images");
+
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            if (file.Length > 0)
+            {
+                var fileName = System.Net.Http.Headers.ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                var fullPath = Path.Combine(pathToSave, fileName);
+                var dbPath = Path.Combine(folderName, fileName);
+
+                using (var stream = new FileStream(fullPath,FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                PutAdvertDto putAdvertDto = postAdvertDto.Adapt<PutAdvertDto>();
+
+                putAdvertDto.PhotoFullPath = dbPath;
+
+                await _advertService.UpdateAdvertAsync(putAdvertDto);
+
+                return Ok(response.Id);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+            
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Advert>> DeleteAdvert(int id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAdvert(int id)
         {
-            return Ok();
+            var response = await _advertService.DeleteAdvertByIdAsync(id);
+            if(response.Success==false)
+            {
+                return BadRequest(new OperationFailedResponse { Errors = response.Errors });
+            }
+            return Ok(response.Id);
         }
 
     }

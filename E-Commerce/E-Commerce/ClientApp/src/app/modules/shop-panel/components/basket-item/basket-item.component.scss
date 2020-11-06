@@ -1,0 +1,15 @@
+img {
+  height: 60px;
+  width: 72px;
+}
+mat-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  align-items: center;
+}
+h4 {
+  padding-right: 10px;
+}
+mat-form-field {
+  width: 70px;
+}
