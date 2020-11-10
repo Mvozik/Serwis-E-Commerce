@@ -1,9 +1,11 @@
-import { AdvertModel } from "./Advert.model";
+import { ProductModel } from "../../admin-panel/models/product.model";
+
 
 export interface ShoppingCartItemModel
 {
+    id:number;
     shoppingCartId:number;
     userId:string;
     quantity:number;
-    advert:AdvertModel;
+    product:ProductModel;
 }

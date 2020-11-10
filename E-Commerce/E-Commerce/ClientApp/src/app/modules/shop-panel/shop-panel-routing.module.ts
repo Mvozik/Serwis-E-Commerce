@@ -31,6 +31,10 @@ const routes: Routes = [
                 path:"logowanie",
                 component:LoginPageComponent
             },
+            {
+                path:"wszystko",
+                component:LoginPageComponent
+            },
         ]
     },
     

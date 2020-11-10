@@ -47,6 +47,9 @@ namespace E_Commerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddControllers();
             services.AddControllersWithViews();
@@ -91,7 +94,7 @@ namespace E_Commerce
 
             services.AddAuthorization();
 
-            services.AddScoped<IAdvertService, AdvertService>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();

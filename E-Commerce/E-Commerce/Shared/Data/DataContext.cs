@@ -16,13 +16,25 @@ namespace E_Commerce.Shared.Data
 
         }
 
-        public DbSet<Advert> Adverts { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ShoppingCartItem>()
+                .HasOne(p => p.ShoppingCart)
+                .WithMany(t => t.ShoppingCartItems)
+                .HasForeignKey(p => p.ShoppingCartId)
+                .IsRequired();
+
+            builder.Entity<ShoppingCartItem>()
+                .HasOne(p => p.Product)
+                .WithMany()
+                .HasForeignKey(p => p.ProductId).IsRequired(); ;
+                
+
             base.OnModelCreating(builder);
         }
 

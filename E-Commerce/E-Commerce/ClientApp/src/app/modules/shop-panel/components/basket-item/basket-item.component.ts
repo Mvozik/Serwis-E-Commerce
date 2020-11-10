@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
   selector: 'app-basket-item',
@@ -7,16 +8,20 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BasketItemComponent implements OnInit {
   @Input() photo:string;
-  @Input() description:string;
+  @Input() name:string;
   @Input() quantity:number;
   @Input() price:number
-
+  @Input() id:number;
   quantityInString:string;
-  constructor() { }
+  constructor(private shoppingService:ShoppingCartService) { }
 
   ngOnInit(): void {
     this.quantityInString=this.quantity.toString();
   }
 
-
+  delete()
+  {
+    this.shoppingService.deleteCartItem(this.id).subscribe(response=>console.log(response));
+    
+  }
 }

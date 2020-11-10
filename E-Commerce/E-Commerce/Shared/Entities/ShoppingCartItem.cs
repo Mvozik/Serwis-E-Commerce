@@ -8,13 +8,17 @@ namespace E_Commerce.Shared.Entities
 {
     public class ShoppingCartItem : BaseEntity
     {
-        
-       
+
+
         public string UserId { get; set; }
         public double Quantity { get; set; }
-        public Advert Advert { get; set; }
+
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
+
+        [ForeignKey("ShoppingCartId")]
         public ShoppingCart ShoppingCart { get; set; }
-        [ForeignKey("ShoppingCart")]
         public int ShoppingCartId { get; set; }
     }
 }

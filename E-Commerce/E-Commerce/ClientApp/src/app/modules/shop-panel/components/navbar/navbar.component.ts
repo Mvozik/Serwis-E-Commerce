@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
       this.state = false;
       this.name = response.name;
       }
-      console.log(this.loginStatus);
   });
 
   }

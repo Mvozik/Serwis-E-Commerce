@@ -1,16 +1,12 @@
-<div class="basket">
+<div class="basket" *ngIf="cart">
 <div class="item-list">
 <div class="basket-options">
 <h1>Koszyk</h1>
 <button mat-button><h3><mat-icon>favorite_border_outline</mat-icon>Zapisz koszyk</h3></button>
 <button mat-button><h3><mat-icon>delete_outline</mat-icon>Wyczyść koszyk</h3></button>
 </div>
-<app-basket-item [photo]="photoUrl" [price]="299.99" [quantity]="12" [description]="'Samsung s20 super szybki tej'"></app-basket-item>
-<app-basket-item [photo]="photoUrl" [price]="299.99" [quantity]="12" [description]="'Samsung s20 super szybki tej'"></app-basket-item>
-<app-basket-item [photo]="photoUrl" [price]="299.99" [quantity]="12" [description]="'Samsung s20 super szybki tej'"></app-basket-item>
-<app-basket-item [photo]="photoUrl" [price]="299.99" [quantity]="12" [description]="'Samsung s20 super szybki tej'"></app-basket-item>
-<app-basket-item [photo]="photoUrl" [price]="299.99" [quantity]="12" [description]="'Samsung s20 super szybki tej'"></app-basket-item>
-<app-basket-item [photo]="photoUrl" [price]="299.99" [quantity]="12" [description]="'Samsung s20 super szybki tej'"></app-basket-item>
+<h2 *ngIf="!cart.shoppingCartItems">Koszyk jest pusty</h2>
+<app-basket-item *ngFor="let item of cart.shoppingCartItems" [id]="item.id" [photo]="item.product.productPhoto "[price]="item.product.price" [quantity]="item.quantity" [name]="item.product.name"></app-basket-item>
 </div>
 <mat-card class="sum-info">
 <h1>Łączna kwota</h1>

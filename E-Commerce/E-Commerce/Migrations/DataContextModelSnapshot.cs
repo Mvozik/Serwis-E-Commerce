@@ -19,7 +19,7 @@ namespace E_Commerce.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("E_Commerce.Shared.Entities.Advert", b =>
+            modelBuilder.Entity("E_Commerce.Shared.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,11 +32,11 @@ namespace E_Commerce.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhotoFullPath")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<byte[]>("ProductPhoto")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -46,7 +46,7 @@ namespace E_Commerce.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Adverts");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("E_Commerce.Shared.Entities.RefreshToken", b =>
@@ -104,7 +104,7 @@ namespace E_Commerce.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdvertId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<double>("Quantity")
@@ -118,7 +118,7 @@ namespace E_Commerce.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertId");
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("ShoppingCartId");
 
@@ -349,9 +349,11 @@ namespace E_Commerce.Migrations
 
             modelBuilder.Entity("E_Commerce.Shared.Entities.ShoppingCartItem", b =>
                 {
-                    b.HasOne("E_Commerce.Shared.Entities.Advert", "Advert")
+                    b.HasOne("E_Commerce.Shared.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("AdvertId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("E_Commerce.Shared.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("ShoppingCartItems")
