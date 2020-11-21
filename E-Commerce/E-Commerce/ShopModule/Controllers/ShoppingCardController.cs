@@ -38,17 +38,43 @@ namespace E_Commerce.ShopModule.Controllers
         public async Task<IActionResult> PostAdvertToShoppingCard(AddProductToShoppingCard addAdvertToShoppingCard)
         {
             var shoppingCard = await _shoppingCardService.AddProductToShoppingCard(addAdvertToShoppingCard);
-            if(shoppingCard.Success==true)
+            if(shoppingCard==null)
             {
-                return Ok(shoppingCard);
+                return Unauthorized();
             }
-            return BadRequest(shoppingCard.Errors);
+            if(shoppingCard.Succes==true)
+            {
+                return Ok(shoppingCard.shoppingCartItem);
+            }
+            return Ok();
+        }
+
+        [HttpPost("change-quantity")]
+        public async Task<IActionResult> ChangeQuantity (ChangeQuantityDto changeQuantity)
+        {
+            var response = await _shoppingCardService.ChangeQuantityAsync(changeQuantity);
+            if(response==null)
+            {
+                return BadRequest();
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("clear-shopping-cart")]
+        public async Task<IActionResult> ClearShoppingCart (int shoppingCartId)
+        {
+            var response = await _shoppingCardService.DeleteAllProductsFromShoppingCartAsync(shoppingCartId);
+            if(response==false)
+            {
+                return BadRequest();
+            }
+            return Ok();
         }
 
         [HttpDelete("shoppingcartitem")]
         public async Task<IActionResult> DeleteShoppingCartItem (int id)
         {
-            var response = await _shoppingCardService.DeleteProductFromShoppingCart(id);
+            var response = await _shoppingCardService.DeleteProductFromShoppingCartAsync(id);
             if(response.Success==true)
             {
                 return Ok(response.Id);

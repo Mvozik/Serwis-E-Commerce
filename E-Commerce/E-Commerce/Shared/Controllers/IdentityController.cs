@@ -69,5 +69,18 @@ namespace E_Commerce.Shared.Controllers
         }
 
 
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout(string refreshToken)
+        {
+            var response = await _identityService.LogoutAsync(refreshToken);
+            if (!response.Success)
+            {
+                return BadRequest(new AuthFailedResponse { Errors = response.Errors });
+            }
+            return Ok();
+        }
+
+
+
     }
 }

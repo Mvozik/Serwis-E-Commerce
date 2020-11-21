@@ -63,7 +63,7 @@ namespace E_Commerce.ShopModule.Services
             
         }
 
-        public async Task<OperationResult> AddProductToShoppingCard(AddProductToShoppingCard addAdvertToShoppingCard)
+        public async Task<AddProductToShoppingCard> AddProductToShoppingCard(AddProductToShoppingCard addAdvertToShoppingCard)
         {
             var user = await _userService.GetCurrentUserAsync();
             if (user == null)
@@ -71,21 +71,36 @@ namespace E_Commerce.ShopModule.Services
                 return null;
             }
 
-            var shoppingCard = await _dbContext.ShoppingCarts.FirstOrDefaultAsync(s => s.Id == addAdvertToShoppingCard.ShoppingCardId);
-            var advert = await _dbContext.Products.FirstOrDefaultAsync(a => a.Id == addAdvertToShoppingCard.ProductId);
-            if(shoppingCard==null || advert==null)
+            var shoppingCart = await _dbContext.ShoppingCarts.Include(p=>p.ShoppingCartItems).ThenInclude(p=>p.Product).FirstOrDefaultAsync(s => s.Id == addAdvertToShoppingCard.ShoppingCartId);
+            var product = await _dbContext.Products.FirstOrDefaultAsync(a => a.Id == addAdvertToShoppingCard.ProductId);
+            if(shoppingCart==null || product == null)
             {
-                return new OperationResult { Success = false, Errors = new[] { "koszyk lub produkt nie istnieje" } };
+                return new AddProductToShoppingCard { Succes=false , Error="ShoppingCart or Product do not exist"};
             }
-            var shoppingCardItem = new ShoppingCartItem { Product = advert, Quantity = 1, ShoppingCartId = shoppingCard.Id, UserId=shoppingCard.UserId};
-            await _dbContext.ShoppingCartItems.AddAsync(shoppingCardItem);
-            await _dbContext.SaveChangesAsync();
-            return new OperationResult { Success = true };
+            var exist = false ;
+            if(shoppingCart.ShoppingCartItems.Count()>0)
+            {
+            shoppingCart.ShoppingCartItems.ForEach(x =>{
+            if(x.Product.Id == product.Id)
+            {
+                    exist = true;
+            }});
+            }
+            if (exist==false)
+            {
+                var shoppingCartItem = new ShoppingCartItem { Product = product, Quantity = 1, ShoppingCartId = shoppingCart.Id, UserId = shoppingCart.UserId };
+                var newShoppingCart = await _dbContext.ShoppingCartItems.AddAsync(shoppingCartItem);
+                await _dbContext.SaveChangesAsync();
+
+                return new AddProductToShoppingCard { Succes=true, shoppingCartItem = newShoppingCart.Entity };
+            }
+
+            return new AddProductToShoppingCard { Succes=false, Error="Product already exist" };
         }
 
 
 
-        public async Task<OperationResult> DeleteProductFromShoppingCart(int ShoppingCardItemId)
+        public async Task<OperationResult> DeleteProductFromShoppingCartAsync(int ShoppingCardItemId)
         {
             var shoppingCartItem = await _dbContext.ShoppingCartItems.FirstOrDefaultAsync(sci => sci.Id == ShoppingCardItemId);
             if(shoppingCartItem ==null)
@@ -96,5 +111,32 @@ namespace E_Commerce.ShopModule.Services
             await _dbContext.SaveChangesAsync();
             return new OperationResult { Id = shoppingCartItem.Id, Success = true }; 
         }
+
+        public async Task<bool> DeleteAllProductsFromShoppingCartAsync(int shoppingCardId)
+        {
+            var shoppingCartItems = await _dbContext.ShoppingCartItems.Where(x=>x.ShoppingCartId==shoppingCardId).ToListAsync();
+            if(shoppingCartItems==null)
+            {
+                return false;
+            }
+            _dbContext.ShoppingCartItems.RemoveRange(shoppingCartItems);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<ShoppingCartItem> ChangeQuantityAsync(ChangeQuantityDto changeQuantityDto)
+        {
+            var shoppingCartItem = await _dbContext.ShoppingCartItems.FirstOrDefaultAsync(x => x.Id == changeQuantityDto.ShoppingCartItemId);
+            if(shoppingCartItem==null)
+            {
+                return null;
+            }
+            shoppingCartItem.Quantity = changeQuantityDto.Quantity;
+            _dbContext.ShoppingCartItems.Update(shoppingCartItem);
+            await _dbContext.SaveChangesAsync();
+            var response = await _dbContext.ShoppingCartItems.Include(p=>p.Product).FirstOrDefaultAsync(x => x.Id == changeQuantityDto.ShoppingCartItemId);
+            return response;
+        }
+
     }
 }
