@@ -9,14 +9,17 @@ import { Tokens } from "../models/tokens.model"
 import { LoginStateModel } from '../models/login-state.model';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
-import * as LoginStateActions from './../login.actions';
+import * as LoginStateActions from './../actions/login.actions';
+import * as ShoppingCartActions from './../actions/shoppingcart.actions';
+import { ShoppingCartService } from '../modules/shop-panel/services/shopping-cart.service';
+import { ShoppingCartModel } from '../modules/shop-panel/models/Shopping-cart.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
 
-  constructor(private http:HttpClient,private store:Store<AppState>)
+  constructor(private http:HttpClient,private store:Store<AppState>,private shoppingCartService:ShoppingCartService)
   {  
     
   }
@@ -46,7 +49,8 @@ export class AuthService {
     this.store.dispatch(new LoginStateActions.SetState(newState));
     this.loggedUser = username;
     this.storeTokens(tokens);
-    
+    this.shoppingCartService.activeShoppingCard()
+    .subscribe((response:ShoppingCartModel)=>this.store.dispatch(new ShoppingCartActions.SetShoppingCart(response)));
   }
 
   private storeTokens(tokens:Tokens)
@@ -57,8 +61,8 @@ export class AuthService {
 
   logout()
   {
-    this.doLogoutUser();
-    //return this.http.post<any>(this.url+"Logout",{'refreshToken':this.getRefreshToken()}).pipe(tap(()=>this.doLogoutUser()));
+    this.store.dispatch(new ShoppingCartActions.RemoveShoppingCart());
+    return this.http.post<any>(this.url+"Logout?refreshToken="+this.getRefreshToken(),{}).pipe(tap(()=>this.doLogoutUser()));
   }
 
   doLogoutUser()
@@ -82,7 +86,7 @@ export class AuthService {
   refreshToken()
   {
     
-    return this.http.post<any>(this.url+"Refesh-Token",this.getTokens()).pipe(tap((tokens:Tokens)=>{this.storeJwtToken(tokens.token);}));
+    return this.http.post<any>(this.url+"Refesh-Token",this.getTokens()).pipe(tap((tokens:Tokens)=>{this.storeTokens(tokens);}));
   }
 
   getTokens()

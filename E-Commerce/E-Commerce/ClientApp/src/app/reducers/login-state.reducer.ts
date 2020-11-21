@@ -1,16 +1,12 @@
-import { Action } from '@ngrx/store';
 import { LoginStateModel } from './../models/login-state.model';
-import * as LoginStateActions from './../login.actions';
-
-
-
+import * as LoginStateActions from '../actions/login.actions';
 
 const initialState: LoginStateModel = {
     loginState : localStorage.getItem("LOGIN_STATUS"),
     name : localStorage.getItem("USER_NAME")
 }
 
-export function reducer(state:LoginStateModel = initialState, action : LoginStateActions.Actions)
+export function loginReducer(state:LoginStateModel = initialState, action : LoginStateActions.Actions)
 {
     switch(action.type){
         case LoginStateActions.SET_STATE:

@@ -29,9 +29,10 @@ export class AddAdvertFormComponent implements OnInit {
   productModel:AddProductModel;
   file:File;
   photo:any;
+
   submit()
   {
-    this.adminService.addProduct(consts.toFormData(this.productForm.value)).subscribe(response => console.log(response));
+    this.adminService.addProduct(consts.toFormData(this.productForm.value)).subscribe();
   }
 
   data : ProductModel[];

@@ -16,11 +16,13 @@ import {  MatInputModule  } from '@angular/material/input';
 import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from "./services/auth.service"
+import { AuthService } from "./services/auth.service";
 import { TokenInterceptor } from "./auth/token.interceptor";
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './reducers/login-state.reducer'
+import { loginReducer } from './reducers/login-state.reducer';
+import { shoppingCartReducer } from './reducers/shopping-cart.reducer';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,8 +49,10 @@ import { reducer } from './reducers/login-state.reducer'
     MatButtonModule,
     MatCarouselModule.forRoot(),
     StoreModule.forRoot({
-      loginState : reducer
-    })
+      loginState : loginReducer,
+      shoppingCart : shoppingCartReducer,
+    }),
+    SharedModule
     
   ],
   providers: [AuthService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],

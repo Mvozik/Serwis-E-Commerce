@@ -37,4 +37,9 @@ export class AdminPanelService {
   {
     return this.httpClient.put(this.url,product);
   }
+
+  deleteProduct(id:number):Observable<any>
+  {
+    return this.httpClient.delete(this.url+"?id="+id);
+  }
 }

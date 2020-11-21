@@ -4,15 +4,14 @@
 <button routerLink="/admin">admin-panel</button>
 </mat-card>
 
-
-
-<mat-carousel class="margined"
+<div class="carousel">
+<mat-carousel
   timings="250ms ease-in"
   [autoplay]="true"
   interval="5000"
   color="accent"
-  maxWidth="1700px"
-  proportion="22"
+  maxWidth=auto 
+  proportion="21"
   slides="3"
   [loop]="true"
   [hideArrows]="false"
@@ -29,55 +28,28 @@
     [hideOverlay]="false"
   ></mat-carousel-slide>
 </mat-carousel>
-
+</div>
 
 
 <h1 class="margined">Najczęściej kupowane</h1>
 
-<div class="adverts">
-  <app-advert-card class="sale"
-  [id]="products[0].id"
-  [name]="products[0].name"
-  [price]="products[0].price" 
-  [photoUrl]="products[0].productPhoto">
-</app-advert-card><app-advert-card
-[id]="products[1].id"
-[name]="products[1].name"
-[price]="products[1].price"  
-  [photoUrl]="products[1].productPhoto">
-</app-advert-card><app-advert-card
-[id]="products[2].id"
-[name]="products[2].name"
-  [price]="products[2].price" 
-[photoUrl]="products[2].productPhoto">
-</app-advert-card><app-advert-card 
-[id]="products[3].id"
-[name]="products[3].name"
-  [price]="products[3].price" 
-[photoUrl]="products[3].productPhoto">
-</app-advert-card><app-advert-card
-[id]="products[4].id"
-[name]="products[4].name"
-  [price]="products[4].price"  
-[photoUrl]="products[4].productPhoto">
-</app-advert-card><app-advert-card
-[id]="products[5].id"
-[name]="products[5].name"
-  [price]="products[5].price" 
-[photoUrl]="products[5].productPhoto">
-</app-advert-card><app-advert-card
-[id]="products[6].id"
-[name]="products[6].name"
-  [price]="products[6].price" 
-[photoUrl]="products[6].productPhoto">
-</app-advert-card><app-advert-card class="advert8" 
-[id]="products[7].id"
-[name]="products[7].name"
-  [price]="products[7].price" 
-[photoUrl]="products[7].productPhoto">
-</app-advert-card><app-advert-card class="advert9" 
-[id]="products[8].id"
-[name]="products[8].name"
-  [price]="products[8].price" 
-[photoUrl]="products[8].productPhoto">
-</app-advert-card></div>
+<div class="adverts" *ngIf="products">
+  <app-product-item class="sale"
+  [product]="products[0]">
+</app-product-item><app-product-item
+[product]="products[1]">
+</app-product-item><app-product-item
+[product]="products[2]">
+</app-product-item><app-product-item 
+[product]="products[3]">
+</app-product-item><app-product-item
+[product]="products[4]">
+</app-product-item><app-product-item
+[product]="products[5]">
+</app-product-item><app-product-item
+[product]="products[6]">
+</app-product-item><app-product-item class="advert8" 
+[product]="products[7]">
+</app-product-item><app-product-item class="advert9" 
+[product]="products[8]">
+</app-product-item></div>

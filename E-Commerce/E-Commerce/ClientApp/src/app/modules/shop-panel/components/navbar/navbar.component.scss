@@ -1,14 +1,30 @@
-.grid-container {
-  width: 100vw;
-  display: grid;
-  grid-template-columns: auto 50vw auto auto;
-  grid-template-rows: auto;
-  place-items: center;
-}
-mat-toolbar-row {
-  width: 80%;
+.navigation {
+  width: 90%;
   margin: auto;
+  display: grid;
+  grid-template-columns: auto 55% auto auto;
 }
-button {
-  transform: scale(1.3);
+.categories {
+  display: grid;
+  width: fit-content;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  place-items: center;
+  margin: auto;
+  button {
+    height: 100%;
+  }
+}
+.login-icon {
+  width: 30px;
+}
+mat-toolbar {
+  background-color: white;
+}
+.logo-image {
+  width: 220px;
+  height: 40px;
+}
+.category-container {
+  width: 100%;
+  background-color: whitesmoke;
 }

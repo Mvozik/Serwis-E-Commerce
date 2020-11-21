@@ -113,17 +113,27 @@ namespace E_Commerce.Shared.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             try
             {
-                var principal = tokenHandler.ValidateToken(token, _tokenValidationParameters, out var validatedToken);
-                if (!IsJwtValidSecurity(validatedToken))
+                var tokenValidationParameters = _tokenValidationParameters.Clone();
+                tokenValidationParameters.ValidateLifetime = false;
+                var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out var validatedToken);
+                if (!IsJwtWithValidSecurityAlgorithm(validatedToken))
                 {
                     return null;
                 }
+
                 return principal;
             }
             catch
             {
                 return null;
             }
+        }
+
+        private bool IsJwtWithValidSecurityAlgorithm(SecurityToken validatedToken)
+        {
+            return (validatedToken is JwtSecurityToken jwtSecurityToken) &&
+                   jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
+                       StringComparison.InvariantCultureIgnoreCase);
         }
 
         private bool IsJwtValidSecurity(SecurityToken validatedToken)
@@ -236,6 +246,14 @@ namespace E_Commerce.Shared.Services
                 Token = tokenHandler.WriteToken(token),
                 RefreshToken = refreshToken.Token
             };
+        }
+
+        public async Task<AuthenticationResult> LogoutAsync(string refreshToken)
+        {
+            var entityRefreshToken = _context.RefreshTokens.FirstOrDefault(x => x.Token == refreshToken);
+            _context.RefreshTokens.Remove(entityRefreshToken);
+            await _context.SaveChangesAsync();
+            return new AuthenticationResult { Success = true };
         }
     }
 }

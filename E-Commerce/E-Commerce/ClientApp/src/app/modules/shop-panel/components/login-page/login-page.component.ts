@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../app.state';
-import { LoginStateModel } from '../../../../models/login-state.model';
 import { LoginModel } from '../../../../models/login.model';
 import { AuthService } from '../../../../services/auth.service';
-import * as LoginStateActions from '../../../../login.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login-page',
@@ -25,8 +23,6 @@ export class LoginPageComponent implements OnInit {
       private formBuilder: FormBuilder,
       private router: Router,
       private authenticationService: AuthService,
-      private store:Store<AppState>,
-      private _snackBar:MatSnackBar
   ) {}
 
   ngOnInit() {

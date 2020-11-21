@@ -1,5 +1,5 @@
 export interface AddProductToCartModel
 {
-    shoppingCardId:number;
+    shoppingCartId:number;
     productId:number;
 }

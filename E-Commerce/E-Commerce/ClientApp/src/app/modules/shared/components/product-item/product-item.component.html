@@ -1,0 +1,9 @@
+<mat-card>
+    <div class="content">
+    <img class="advert-photo" [src]="product.productPhoto">    
+    <mat-card-title class="card-title">{{product.name}}</mat-card-title>
+    <mat-card-subtitle style="width: 100%;">{{product.price}} zł</mat-card-subtitle>
+    <button mat-icon-button (click)="addProduct()" class="add-to-cart"><mat-icon>add_shopping_cart</mat-icon></button>
+    </div>
+</mat-card>
+    

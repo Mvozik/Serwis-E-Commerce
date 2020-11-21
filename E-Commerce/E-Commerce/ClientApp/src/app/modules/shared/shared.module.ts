@@ -9,12 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 
 
 @NgModule({
   declarations: [
     
-  ],
+  ProductItemComponent],
   imports:[
     MatFormFieldModule,
     MatToolbarModule,
@@ -39,6 +40,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    ProductItemComponent
   ]
 })
 export class SharedModule {}

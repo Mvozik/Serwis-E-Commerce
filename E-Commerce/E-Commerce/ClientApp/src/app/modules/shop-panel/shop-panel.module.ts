@@ -9,7 +9,6 @@ import { BasketItemComponent } from './components/basket-item/basket-item.compon
 import {MatSelectModule} from '@angular/material/select';
 import { MainpageComponent } from './components/mainpage/mainpage.component'
 import { MatCarouselModule } from '@ngmodule/material-carousel';
-import { AdvertCardComponent } from './components/advert-card/advert-card.component';
 import { ShopBaseComponent } from './components/shop-base/shop-base.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,17 +18,32 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LaptopsComputersComponent } from './components/laptops-computers/laptops-computers.component';
+import { SmartfonSmartwatchComponent } from './components/smartfon-smartwatch/smartfon-smartwatch.component';
+import { GamingStreamingComponent } from './components/gaming-streaming/gaming-streaming.component';
+import { ComputerPartsComponent } from './components/computer-parts/computer-parts.component';
+import { RtvAgdComponent } from './components/rtv-agd/rtv-agd.component';
+import { TvAudioComponent } from './components/tv-audio/tv-audio.component';
+import { SmarthomeLifestyleComponent } from './components/smarthome-lifestyle/smarthome-lifestyle.component';
+import { AccesoriesComponent } from './components/accesories/accesories.component';
 
 @NgModule({
   declarations: [
     BasketComponent,
      BasketItemComponent, 
      MainpageComponent, 
-     AdvertCardComponent, 
      ShopBaseComponent, 
      NavbarComponent, 
      RegisterFormComponent,
-     LoginPageComponent
+     LoginPageComponent,
+     LaptopsComputersComponent,
+     SmartfonSmartwatchComponent,
+     GamingStreamingComponent,
+     ComputerPartsComponent,
+     RtvAgdComponent,
+     TvAudioComponent,
+     SmarthomeLifestyleComponent,
+     AccesoriesComponent
     ],
   imports: [
     ShopPanelRoutingModule,

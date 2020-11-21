@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseUrl } from '../../../../environments/environment';
 import { AddProductToCartModel } from '../models/add-product-to-cart.model';
+import { ChagneQuantityModel } from '../models/change-quantity.model';
 import { ShoppingCartModel } from '../models/Shopping-cart.model';
 
 @Injectable({
@@ -26,6 +27,16 @@ export class ShoppingCartService {
   addProductToCart(model:AddProductToCartModel):Observable<any>
   {
       return this.httpClient.post(this.url+"/add-to-shopping-card",model);
+  }
+
+  changeQuantity(model:ChagneQuantityModel)
+  {
+      return this.httpClient.post(this.url+"/change-quantity",model);
+  }
+
+  clearShoppingCart(id:number)
+  {
+      return this.httpClient.delete(this.url+"/clear-shopping-cart?shoppingCartId="+id);
   }
 
 }

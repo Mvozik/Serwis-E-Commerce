@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModel } from '../../models/product.model';
 import { AdminPanelService } from '../../services/admin-panel.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -11,7 +11,7 @@ import { consts } from '../../../../CONST';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private adminService:AdminPanelService, private formBuilder: FormBuilder)
+  constructor(private route: ActivatedRoute,private router: Router,private adminService:AdminPanelService, private formBuilder: FormBuilder)
   { 
     
 
@@ -60,11 +60,15 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     
-    this.adminService.putProduct(consts.toFormData(this.productForm.value)).subscribe(response=>console.log(response));
+    this.adminService.putProduct(consts.toFormData(this.productForm.value)).subscribe();
     
   }
 
-  
+  deleteProduct()
+  {
+    this.adminService.deleteProduct(this.productForm.value.id).subscribe();
+    this.router.navigateByUrl("admin/produkty");
+  }
 
   changephoto()
   {
