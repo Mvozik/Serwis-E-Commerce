@@ -18,9 +18,9 @@ export class BasketComponent implements OnInit {
 
     this.shoppingCard = this.store.select("shoppingCart");
     this.shoppingCard.subscribe(response=>{
-      this.cart=response;
-      this.sum=0;
-      this.cart.shoppingCartItems.forEach(x=>
+        this.cart=response;
+        this.sum=0;
+        this.cart.shoppingCartItems.forEach(x=>
         {
           this.sum += x.product.price * x.quantity;
         }
@@ -36,6 +36,7 @@ export class BasketComponent implements OnInit {
   {
     this.shoppingCartService.clearShoppingCart(this.cart.id).subscribe();
     this.store.dispatch(new ShoppingCartActions.ClearShoppingCart());
+    
   }
 
   onClick()

@@ -56,17 +56,14 @@ export function shoppingCartReducer(state:ShoppingCartModel = initial , action :
              } 
             return clearState;
         case ShoppingStateActions.CHANGE_QUANTITY:
-            let removed = state.shoppingCartItems.filter(obj => obj.id !== action.payload.id);
             let changedQuantity : ShoppingCartModel = { 
                 id:state.id,
                 userId:state.userId,
-                shoppingCartItems:[...removed,action.payload],
+                shoppingCartItems:[...state.shoppingCartItems],
                 active:state.active
-             } 
-            
+            }
             return changedQuantity;   
         default:
             return state;
-
     }
 }
