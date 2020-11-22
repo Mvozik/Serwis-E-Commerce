@@ -9,7 +9,7 @@ namespace E_Commerce.ShopModule.Dtos.ShoppingCardDtos
     public class GetShoppingCard
     {
         public int Id { get; set; }
-        public List<Advert> Adverts { get; set; }
+        public List<Product> Adverts { get; set; }
 
     }
 }

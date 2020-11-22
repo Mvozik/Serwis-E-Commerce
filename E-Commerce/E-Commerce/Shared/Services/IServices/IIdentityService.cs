@@ -11,5 +11,6 @@ namespace E_Commerce.Shared.Services.IServices
     {
         Task<AuthenticationResult> RegisterAsync(UserPostRegistrationDto request);
         Task<AuthenticationResult> LoginAsync(UserPostLoginDto request);
+        Task<AuthenticationResult> RefreshTokenAsync(string token, string refreshToken);
     }
 }

@@ -8,5 +8,6 @@ namespace E_Commerce.Shared.Dtos.Responses
     public class AuthSuccessResponse
     {
         public string Token { get; set; }
+        public string RefreshToken { get; set; }
     }
 }

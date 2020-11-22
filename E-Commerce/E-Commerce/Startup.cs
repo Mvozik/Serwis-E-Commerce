@@ -26,6 +26,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Principal;
 using E_Commerce.Shared.Services;
 using E_Commerce.Shared.Services.IServices;
+using Mapster;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
+using E_Commerce.Shared.Entities;
 
 namespace E_Commerce
 {
@@ -42,12 +47,26 @@ namespace E_Commerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddControllers();
-
+            services.AddControllersWithViews();
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
+            var tokenValidation = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Key)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                RequireExpirationTime = false,
+                ValidateLifetime = true
+            };
+            
+            services.AddSingleton(tokenValidation);
 
             services.AddAuthentication(x =>
             {
@@ -57,30 +76,28 @@ namespace E_Commerce
             }).AddJwtBearer(x =>
             {
                 x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Key)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    RequireExpirationTime = false,
-                    ValidateLifetime = true
-                };
+                x.TokenValidationParameters = tokenValidation;
             });
 
-
+            services.Configure<FormOptions>(o => {
+                o.ValueCountLimit = int.MaxValue;
+                o.ValueLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;  
+            });
 
             services.AddMvc(options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<DataContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                );
+            services.AddDefaultIdentity<User>().AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>();
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<DataContext>();
+            services.AddAuthorization();
 
-            services.AddScoped<IAdvertService, AdvertService>();
-            services.AddScoped<IShoppingCardService, ShoppingCardService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -106,14 +123,7 @@ namespace E_Commerce
 
             });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("https://localhost:44320");
-                                  });
-            });
+            
 
         }
 
@@ -135,14 +145,26 @@ namespace E_Commerce
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Api");
                 c.RoutePrefix = string.Empty;
             });
-
-
+            
             app.UseHttpsRedirection();
-
-            app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
 
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions { 
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),@"Resources")),
+                RequestPath=new PathString("/Resources") 
+            });
+
+            app.UseRouting();
+
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithExposedHeaders()
+             );
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

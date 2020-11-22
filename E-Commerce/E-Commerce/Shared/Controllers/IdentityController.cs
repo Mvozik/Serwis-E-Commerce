@@ -22,9 +22,9 @@ namespace E_Commerce.Shared.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register( UserPostRegistrationDto request)
+        public async Task<IActionResult> Register(UserPostRegistrationDto request)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(new AuthFailedResponse
                 {
@@ -38,7 +38,7 @@ namespace E_Commerce.Shared.Controllers
                 return BadRequest(new AuthFailedResponse { Errors = authResponse.Errors });
             }
 
-            return Ok(new AuthSuccessResponse { Token = authResponse.Token });
+            return Ok(new AuthSuccessResponse { Token = authResponse.Token, RefreshToken = authResponse.RefreshToken });
         }
 
         [HttpPost("Login")]
@@ -50,8 +50,24 @@ namespace E_Commerce.Shared.Controllers
                 return BadRequest(new AuthFailedResponse { Errors = authResponse.Errors });
             }
 
-            return Ok(new AuthSuccessResponse { Token = authResponse.Token });
+            return Ok(new AuthSuccessResponse { Token = authResponse.Token, RefreshToken = authResponse.RefreshToken });
         }
+
+        [HttpPost("Refesh-Token")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenDto refreshTokenDto)
+        {
+            var response = await _identityService.RefreshTokenAsync(refreshTokenDto.Token, refreshTokenDto.RefreshToken);
+            if(!response.Success)
+            {
+                return BadRequest(new AuthFailedResponse { Errors=response.Errors });
+            }
+            return Ok( new AuthSuccessResponse
+            { 
+                Token = response.Token,
+                RefreshToken = response.RefreshToken
+            });
+        }
+
 
     }
 }

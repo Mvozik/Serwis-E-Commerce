@@ -8,10 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201104030728_xddd.cs" />
+    <Compile Remove="Migrations\20201104030728_xddd.Designer.cs" />
+    <Compile Remove="Migrations\20201105233319_update1.cs" />
+    <Compile Remove="Migrations\20201105233319_update1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Mapster" Version="6.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
@@ -29,8 +37,7 @@
 
   <ItemGroup>
     <Folder Include="AdminModule\" />
-    <Folder Include="Shared\Data\Migrations\" />
-    <Folder Include="Shared\Interfaces\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 
