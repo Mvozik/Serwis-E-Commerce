@@ -98,8 +98,6 @@ namespace E_Commerce.ShopModule.Services
             return new AddProductToShoppingCard { Succes=false, Error="Product already exist" };
         }
 
-
-
         public async Task<OperationResult> DeleteProductFromShoppingCartAsync(int ShoppingCardItemId)
         {
             var shoppingCartItem = await _dbContext.ShoppingCartItems.FirstOrDefaultAsync(sci => sci.Id == ShoppingCardItemId);
@@ -137,6 +135,8 @@ namespace E_Commerce.ShopModule.Services
             var response = await _dbContext.ShoppingCartItems.Include(p=>p.Product).FirstOrDefaultAsync(x => x.Id == changeQuantityDto.ShoppingCartItemId);
             return response;
         }
+
+
 
     }
 }

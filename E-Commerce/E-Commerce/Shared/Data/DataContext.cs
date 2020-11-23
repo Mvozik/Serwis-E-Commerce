@@ -20,6 +20,9 @@ namespace E_Commerce.Shared.Data
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -32,8 +35,21 @@ namespace E_Commerce.Shared.Data
             builder.Entity<ShoppingCartItem>()
                 .HasOne(p => p.Product)
                 .WithMany()
-                .HasForeignKey(p => p.ProductId).IsRequired(); ;
-                
+                .HasForeignKey(p => p.ProductId)
+                .IsRequired(); 
+
+            builder.Entity<Category>()
+                .HasOne(p => p.Section)
+                .WithMany(t=>t.Categories)
+                .HasForeignKey(p => p.SectionId)
+                .IsRequired(); 
+
+            builder.Entity<SubCategory>()
+                .HasOne(p => p.Category)
+                .WithMany(t => t.SubCategories)
+                .HasForeignKey(p => p.CategoryId)
+                .IsRequired(); 
+            
 
             base.OnModelCreating(builder);
         }

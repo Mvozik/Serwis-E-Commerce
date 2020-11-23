@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20201104030728_xddd.Designer.cs" />
     <Compile Remove="Migrations\20201105233319_update1.cs" />
     <Compile Remove="Migrations\20201105233319_update1.Designer.cs" />
+    <Compile Remove="Migrations\20201122221808_category-add.cs" />
+    <Compile Remove="Migrations\20201122221808_category-add.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,8 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AdminModule\" />
-    <Folder Include="Resources\" />
+    <Folder Include="AdminModule\Dtos\" />
   </ItemGroup>
 
 

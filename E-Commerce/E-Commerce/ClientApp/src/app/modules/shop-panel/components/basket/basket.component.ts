@@ -13,6 +13,10 @@ import * as ShoppingCartActions from '../../../../actions/shoppingcart.actions'
 })
 export class BasketComponent implements OnInit {
 
+  shoppingCard:Observable<ShoppingCartModel>;
+  sum:number= 0;
+  cart : ShoppingCartModel;
+
   constructor(private store:Store<AppState>,private shoppingCartService:ShoppingCartService)
   { 
 
@@ -44,7 +48,11 @@ export class BasketComponent implements OnInit {
     
   }
 
-  shoppingCard:Observable<ShoppingCartModel>;
-  sum:number= 0;
-  cart : ShoppingCartModel;
+  updateQuantity(event:ShoppingCartItemModel)
+  {
+    
+    this.store.dispatch(new ShoppingCartActions.ChangeQuantity(event));
+
+  }
+
 }

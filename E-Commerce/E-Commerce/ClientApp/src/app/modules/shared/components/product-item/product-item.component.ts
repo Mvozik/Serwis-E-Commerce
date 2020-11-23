@@ -8,6 +8,7 @@ import { ShoppingCartModel } from '../../../shop-panel/models/Shopping-cart.mode
 import { ShoppingCartService } from '../../../shop-panel/services/shopping-cart.service';
 import * as ShoppingCartActions from '../../../../actions/shoppingcart.actions';
 import { ShoppingCartItemModel } from '../../../shop-panel/models/Shopping-cart-item.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -17,7 +18,7 @@ export class ProductItemComponent implements OnInit {
   @Input() product:ProductModel;
   shoppingCart:Observable<ShoppingCartModel>;
   shoppingCartId:any;
-  constructor(private shoppingService:ShoppingCartService,private store:Store<AppState> ) { }
+  constructor(private shoppingService:ShoppingCartService,private store:Store<AppState>,private _snackBar: MatSnackBar ) { }
 
   convertedUrl:string;
   
@@ -39,7 +40,17 @@ export class ProductItemComponent implements OnInit {
       
       this.shoppingService.addProductToCart(model).subscribe(
       (response:ShoppingCartItemModel)=>{
-        this.store.dispatch(new ShoppingCartActions.AddShoppingCartItem(response));
+        if(response==null)
+        {
+          this._snackBar.open("Już dodałeś ten produkt do koszyka!","", {
+            duration: 200,
+          });
+        }
+        else
+        {
+          this.store.dispatch(new ShoppingCartActions.AddShoppingCartItem(response));
+        }
+        
       });
       
 

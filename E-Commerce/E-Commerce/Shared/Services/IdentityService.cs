@@ -5,6 +5,7 @@ using E_Commerce.Shared.Models;
 using E_Commerce.Shared.Services.IServices;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -250,7 +251,7 @@ namespace E_Commerce.Shared.Services
 
         public async Task<AuthenticationResult> LogoutAsync(string refreshToken)
         {
-            var entityRefreshToken = _context.RefreshTokens.FirstOrDefault(x => x.Token == refreshToken);
+            var entityRefreshToken = await _context.RefreshTokens.FirstOrDefaultAsync(x => x.Token == refreshToken);
             _context.RefreshTokens.Remove(entityRefreshToken);
             await _context.SaveChangesAsync();
             return new AuthenticationResult { Success = true };
