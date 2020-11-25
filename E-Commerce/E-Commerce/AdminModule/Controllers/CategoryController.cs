@@ -9,30 +9,67 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using System;
 using E_Commerce.Shared.Entities;
+using E_Commerce.AdminModule.Services.IServices;
+using E_Commerce.AdminModule.Dtos;
 
 namespace E_Commerce.AdminModule.Controllers
 {
-    public class CategoryController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CategoryController:ControllerBase
     {
-        [Route("api/[controller]")]
-        [ApiController]
-        public class ProductController : ControllerBase
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
         {
+            _categoryService = categoryService;
+        }
 
-            [HttpGet("Category")]
-            public async Task<IActionResult> GetCategories()
+        [HttpGet("Sections")]
+        public async Task<IActionResult> GetSections()
+        {
+            var response = await _categoryService.GetSectionsAsync();
+            return Ok(response);
+        }
+
+        [HttpGet("Category")]
+        public async Task<IActionResult> GetCategories()
+        {
+            var response = await _categoryService.GetCategoriesAsync();
+            return Ok(response);
+        }
+
+        [HttpGet("SubCategory")]
+        public async Task<IActionResult> GetSubCategories()
+        {
+            var response = await _categoryService.GetSubCategoriesAsync();
+            return Ok(response);
+        }
+
+        [HttpPost("Category")]
+        public async Task<IActionResult> PostCategories(PostCategoryDto postCategoryDto)
+        {
+            var response = await _categoryService.AddCategoryAsync(postCategoryDto);
+            return Ok(response);
+        }
+
+        [HttpPost("SubCategory")]
+        public async Task<IActionResult> PostSubCategories(PostSubCategoryDto postSubCategoryDto)
+        {
+            var response = await _categoryService.AddSubCategoryAsync(postSubCategoryDto);
+            return Ok(response);
+
+        }
+
+        [HttpGet("products-by-section")]
+        public async Task<IActionResult> GetSectionCategories(int id)
+        {
+            var response = await _categoryService.GetProductsBySectionIdAsync(id);
+            if(response==null)
             {
-
-
+                return BadRequest();
             }
-
-            [HttpGet("SubCategory")]
-            public async Task<IActionResult> GetSubCategories()
-            {
-
-
-            }
-
+            return Ok(response);
         }
 
 

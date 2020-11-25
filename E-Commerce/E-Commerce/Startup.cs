@@ -31,6 +31,8 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using E_Commerce.Shared.Entities;
+using E_Commerce.AdminModule.Services.IServices;
+using E_Commerce.AdminModule.Services;
 
 namespace E_Commerce
 {
@@ -98,6 +100,7 @@ namespace E_Commerce
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

@@ -48,8 +48,13 @@ namespace E_Commerce.Shared.Data
                 .HasOne(p => p.Category)
                 .WithMany(t => t.SubCategories)
                 .HasForeignKey(p => p.CategoryId)
-                .IsRequired(); 
-            
+                .IsRequired();
+
+            builder.Entity<Product>()
+                .HasOne(p => p.SubCategory)
+                .WithMany()
+                .HasForeignKey(p => p.SubCategoryId)
+                .IsRequired();
 
             base.OnModelCreating(builder);
         }

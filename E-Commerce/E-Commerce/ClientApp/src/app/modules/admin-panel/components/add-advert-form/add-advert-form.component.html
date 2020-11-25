@@ -43,16 +43,40 @@
           </mat-form-field>
 
           <mat-form-field>
-            <ngx-mat-file-input (change)='changephoto()' formControlName="productPhoto" >
+            <mat-label>Wybierz Sekcję*</mat-label>
+            <mat-select (selectionChange)="changeSection($event)">
+                <mat-option *ngFor="let section of sections"  [value]="section.id">
+                  {{section.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="selectedSection">
+            <mat-label>Wybierz Kategorię*</mat-label>
+            <mat-select (selectionChange)="changeCategory($event)">
+                <mat-option *ngFor="let category of selectedSection.categories"  [value]="category.id">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field >
+          <mat-form-field required *ngIf="selectedCategory">
+            <mat-label>Wybierz Podkategorię*</mat-label>
+            <mat-select (selectionChange)="changeSubCategory($event)">
+                <mat-option *ngFor="let subCategory of selectedCategory.subCategories"  [value]="subCategory.id">
+                  {{subCategory.name}}
+                </mat-option>
+              </mat-select>
+            
+            
+          </mat-form-field>
+          <mat-form-field> 
+            <ngx-mat-file-input required (change)='changephoto()' formControlName="productPhoto" >
             </ngx-mat-file-input>
          </mat-form-field>
 
-
-        <button mat-raised-button color="primary">Dodaj</button>
+        <button *ngIf='!productForm.valid' disabled mat-raised-button color="primary">Dodaj</button>
+        <button *ngIf='productForm.valid' mat-raised-button color="primary">Dodaj</button>
       </form>
     </mat-card-content>
   </mat-card>
-
-
-
 </div>

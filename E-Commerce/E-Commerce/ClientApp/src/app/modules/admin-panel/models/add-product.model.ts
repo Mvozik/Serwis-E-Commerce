@@ -6,4 +6,5 @@ export interface AddProductModel
     description:string;
     specification:string;
     formFile:File;
+    subCategoryId:number;
 }

@@ -75,14 +75,21 @@ namespace E_Commerce.ShopModule.Services
 
         public async Task<OperationResult> PostProductAsync(PostProductDto postProductDto)
         {
+            var subCategory = await _dbContext.SubCategories.FirstOrDefaultAsync(x => x.Id == postProductDto.SubCategoryId);
+            if(subCategory==null)
+            {
+                return new OperationResult { Success = false, Errors = new[] { "Sub Category do not exist" } };
+            }
             var product = new Product
             {
                 Name = postProductDto.Name,
                 Description = postProductDto.Description,
                 Price = postProductDto.Price,
                 Specification = postProductDto.Specification,
-                Quantity = postProductDto.Quantity
+                Quantity = postProductDto.Quantity,
+                SubCategory = subCategory
             };
+            
 
             product.ProductPhoto = await GetFileAsByteArrayAsync(postProductDto.ProductPhoto);
 

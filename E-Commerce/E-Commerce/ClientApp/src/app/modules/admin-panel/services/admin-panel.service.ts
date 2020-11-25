@@ -42,4 +42,6 @@ export class AdminPanelService {
   {
     return this.httpClient.delete(this.url+"?id="+id);
   }
+  
+  
 }

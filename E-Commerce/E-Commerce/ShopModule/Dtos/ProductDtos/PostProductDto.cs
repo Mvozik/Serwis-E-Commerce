@@ -14,5 +14,6 @@ namespace E_Commerce.ShopModule.Dtos.ProductDtos
         public string Description { get; set; }
         public string Specification { get; set; }
         public IFormFile ProductPhoto { get; set; }
+        public int SubCategoryId { get; set; }
     }
 }

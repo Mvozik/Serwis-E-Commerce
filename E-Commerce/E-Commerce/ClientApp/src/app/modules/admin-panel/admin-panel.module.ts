@@ -13,10 +13,11 @@ import { OrdersPanelComponent } from './components/orders-panel/orders-panel.com
 import { UsersPanelComponent } from './components/users-panel/users-panel.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AdvertCardComponent } from './components/advert-card/advert-card.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component'
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CategoriesComponent } from './components/categories/categories.component'
 
 @NgModule({
-  declarations: [AdminLoginFormComponent, AdminDashboardComponent, AdminNavBarComponent, AddAdvertFormComponent, ProductPanelComponent, OrdersPanelComponent, UsersPanelComponent, ProductListComponent, AdvertCardComponent, ProductDetailsComponent],
+  declarations: [AdminLoginFormComponent, AdminDashboardComponent, AdminNavBarComponent, AddAdvertFormComponent, ProductPanelComponent, OrdersPanelComponent, UsersPanelComponent, ProductListComponent, AdvertCardComponent, ProductDetailsComponent, CategoriesComponent],
   imports: [
     CommonModule,
     AdminPanelRoutingModule,

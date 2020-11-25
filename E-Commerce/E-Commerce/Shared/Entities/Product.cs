@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
@@ -14,5 +15,10 @@ namespace E_Commerce.Shared.Entities
         public string Description { get; set; }
         public string Specification { get; set; }
         public byte[] ProductPhoto { get; set; }
+
+        [ForeignKey("SubCategoryId")]
+        public SubCategory SubCategory { get; set; }
+        public int? SubCategoryId { get; set; }
+
     }
 }

@@ -19,6 +19,10 @@ export class AppComponent {
   }
   
   ngOnInit() {
+    if(localStorage.getItem("JWT_TOKEN"))
+    {
+
+    
     if (this.tokenExpired(localStorage.getItem("JWT_TOKEN")))
     {
       this.authService.refreshToken().subscribe(response=>console.log(response));
@@ -27,5 +31,6 @@ export class AppComponent {
     {
      
     }
+  }
   }
 }

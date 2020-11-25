@@ -1,6 +1,5 @@
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\E-Commerce.exe
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.csprojAssemblyReference.cache
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.AssemblyInfoInputs.cache
@@ -166,15 +165,6 @@ C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netco
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Mapster.dll
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\angular.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\e2e\tsconfig.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\package-lock.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\package.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\tsconfig.app.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\tsconfig.base.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\tsconfig.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\tsconfig.spec.json
-C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\ClientApp\tslint.json
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
@@ -182,3 +172,4 @@ C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\bin\Debug\netco
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.csproj.CoreCompileInputs.cache
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\E-Commerce.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Piotr\Documents\Serwis-E-Commerce\E-Commerce\E-Commerce\obj\Debug\netcoreapp3.1\scopedcss\bundle\E-Commerce.styles.css

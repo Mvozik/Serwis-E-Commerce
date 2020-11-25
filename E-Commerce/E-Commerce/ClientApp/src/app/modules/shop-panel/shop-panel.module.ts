@@ -18,13 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { LaptopsComputersComponent } from './components/laptops-computers/laptops-computers.component';
-import { SmartfonSmartwatchComponent } from './components/smartfon-smartwatch/smartfon-smartwatch.component';
-import { GamingStreamingComponent } from './components/gaming-streaming/gaming-streaming.component';
-import { ComputerPartsComponent } from './components/computer-parts/computer-parts.component';
-import { RtvAgdComponent } from './components/rtv-agd/rtv-agd.component';
-import { TvAudioComponent } from './components/tv-audio/tv-audio.component';
-import { SmarthomeLifestyleComponent } from './components/smarthome-lifestyle/smarthome-lifestyle.component';
+import { ProductsComponent } from './components/laptops-computers/products.component';
+
 import { AccesoriesComponent } from './components/accesories/accesories.component';
 
 @NgModule({
@@ -36,13 +31,7 @@ import { AccesoriesComponent } from './components/accesories/accesories.componen
      NavbarComponent, 
      RegisterFormComponent,
      LoginPageComponent,
-     LaptopsComputersComponent,
-     SmartfonSmartwatchComponent,
-     GamingStreamingComponent,
-     ComputerPartsComponent,
-     RtvAgdComponent,
-     TvAudioComponent,
-     SmarthomeLifestyleComponent,
+     ProductsComponent,
      AccesoriesComponent
     ],
   imports: [

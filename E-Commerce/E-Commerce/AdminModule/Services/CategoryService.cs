@@ -1,4 +1,5 @@
-﻿using E_Commerce.AdminModule.Services.IServices;
+﻿using E_Commerce.AdminModule.Dtos;
+using E_Commerce.AdminModule.Services.IServices;
 using E_Commerce.Shared.Data;
 using E_Commerce.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -12,28 +13,36 @@ namespace E_Commerce.AdminModule.Services
     public class CategoryService : ICategoryService
     {
         private readonly DataContext _dbContext;
-        CategoryService(DataContext dbContext)
+        public CategoryService(DataContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Category> AddCategoryAsync(Category category)
+        public async Task<Category> AddCategoryAsync(PostCategoryDto postCategoryDto)
         {
-            var response = await _dbContext.Categories.AddAsync(category);
+            var section = await _dbContext.Sections.FirstOrDefaultAsync(x => x.Id == postCategoryDto.SectionId);
+            if (section == null)
+            {
+                return null;
+            }
+            var response = await _dbContext.Categories.AddAsync(new Category { Name=postCategoryDto.Name,Section = section });
             await _dbContext.SaveChangesAsync();
             return response.Entity;
         }
 
-        public async Task<Section> AddSectionAsync(Section section)
+        public Task<Section> AddSectionAsync(Section section)
         {
-            var response = await _dbContext.Sections.AddAsync(section);
-            await _dbContext.SaveChangesAsync();
-            return response.Entity;
+            throw new NotImplementedException();
         }
 
-        public async Task<SubCategory> AddSubCategoryAsync(SubCategory subCategory)
+        public async Task<SubCategory> AddSubCategoryAsync(PostSubCategoryDto postSubCategoryDto)
         {
-            var response = await _dbContext.SubCategories.AddAsync(subCategory);
+            var category = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == postSubCategoryDto.CategoryId);
+            if(category==null)
+            {
+                return null;
+            }
+            var response = await _dbContext.SubCategories.AddAsync(new SubCategory { Name = postSubCategoryDto.Name, Category = category });
             await _dbContext.SaveChangesAsync();
             return response.Entity;
         }
@@ -78,12 +87,28 @@ namespace E_Commerce.AdminModule.Services
 
         public async Task<List<Category>> GetCategoriesAsync()
         {
-            return await _dbContext.Categories.ToListAsync();
+            return await _dbContext.Categories
+                .Include(p=>p.SubCategories)
+                .ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProductsBySectionIdAsync(int id)
+        {
+            var section = await _dbContext.Sections.FirstOrDefaultAsync(x => x.Id == id);
+            if(section==null)
+            {
+                return null;
+            }
+            var products = await _dbContext.Products.Where(x => x.SubCategory.Category.Section.Id == section.Id).ToListAsync();
+            return products;
         }
 
         public async Task<List<Section>> GetSectionsAsync()
         {
-            return await _dbContext.Sections.ToListAsync();
+            return await _dbContext.Sections
+                .Include(p => p.Categories)
+                .ThenInclude(p=>p.SubCategories)
+                .ToListAsync();
         }
 
         public async Task<List<SubCategory>> GetSubCategoriesAsync()

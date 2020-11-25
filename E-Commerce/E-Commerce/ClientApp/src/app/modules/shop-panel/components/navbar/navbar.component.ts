@@ -7,6 +7,7 @@ import * as LoginStateActions from '../../../../actions/login.actions'
 import { LoginStateModel } from '../../../../models/login-state.model';
 import { AuthService } from '../../../../services/auth.service';
 import { ShoppingCartModel } from '../../models/Shopping-cart.model';
+import {consts } from "../../../.././CONST"
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -31,10 +32,11 @@ export class NavbarComponent implements OnInit {
       this.maticon="account_box_outline";
       }
   });
-
+  
   }
 
   ngOnInit(): void {
+    
   }
 
   loginStatus:Observable<LoginStateModel>;
@@ -42,7 +44,7 @@ export class NavbarComponent implements OnInit {
   state:boolean;
   name:string;
   maticon:string;
-
+  names = consts.sections;
   click()
   {
     if(this.state)

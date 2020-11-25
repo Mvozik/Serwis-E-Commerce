@@ -5,13 +5,8 @@ import { ShopBaseComponent } from './components/shop-base/shop-base.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { LaptopsComputersComponent } from './components/laptops-computers/laptops-computers.component';
-import { GamingStreamingComponent } from './components/gaming-streaming/gaming-streaming.component';
-import { SmartfonSmartwatchComponent } from './components/smartfon-smartwatch/smartfon-smartwatch.component';
-import { ComputerPartsComponent } from './components/computer-parts/computer-parts.component';
-import { RtvAgdComponent } from './components/rtv-agd/rtv-agd.component';
-import { SmarthomeLifestyleComponent } from './components/smarthome-lifestyle/smarthome-lifestyle.component';
-import { AccesoriesComponent } from './components/accesories/accesories.component';
+import { ProductsComponent } from './components/laptops-computers/products.component';
+
 
 
 
@@ -39,38 +34,9 @@ const routes: Routes = [
                 component:LoginPageComponent
             },
             {
-                path:"laptopy-komputery",
-                component:LaptopsComputersComponent
+                path:"produkty/:id",
+                component:ProductsComponent
             },
-            {
-                path:"smartfony-smartwatche",
-                component:SmartfonSmartwatchComponent
-            },
-            {
-                path:"gaming-streaming",
-                component:GamingStreamingComponent
-            },
-            {
-                path:"podzespoly-komputerowe",
-                component:ComputerPartsComponent
-            },
-            {
-                path:"urzadzenia-peryferyjne",
-                component:RtvAgdComponent
-            },
-            {
-                path:"tv-audio",
-                component:RtvAgdComponent
-            },
-            {
-                path:"smarthome-lifestyle",
-                component:SmarthomeLifestyleComponent
-            },
-            {
-                path:"akcesoria",
-                component:AccesoriesComponent
-            },
-           
         ]
     },
     

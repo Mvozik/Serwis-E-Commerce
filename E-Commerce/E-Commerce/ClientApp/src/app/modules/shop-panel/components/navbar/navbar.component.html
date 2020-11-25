@@ -8,14 +8,8 @@
     </mat-toolbar-row>
   <mat-toolbar-row class="category-container">
     <div class="categories">
-    <button routerLink="laptopy-komputery" mat-button><mat-icon>devices</mat-icon><span>Laptopy i komputery</span></button>
-    <button routerLink="smartfony-smartwatche" mat-button><mat-icon>smartphone</mat-icon><span>Smartfony i smartwatche</span></button>
-    <button routerLink="gaming-streaming" mat-button><mat-icon>videogame_asset</mat-icon><span>Gaming i streaming</span></button>
-    <button routerLink="podzespoly-komputerowe" mat-button><mat-icon>memory</mat-icon><span>Podzespoły komputerowe</span></button>
-    <button routerLink="urzadzenia-peryferyjne" mat-button><mat-icon>print</mat-icon><span>Urządzenia peryferyjne</span></button>
-    <button routerLink="tv-audio" mat-button><mat-icon>tv</mat-icon><span>TV i audio</span></button>
-    <button routerLink="smarthome-lifestyle" mat-button><mat-icon>home</mat-icon><span>Smarthome i lifestyle</span></button>
-    <button routerLink="akcesoria" mat-button><mat-icon>settings_input_hdmi</mat-icon><span>Akcesoria</span></button>
+    <button [routerLink]="['',name.id]" *ngFor="let name of names" [routerLink]="['produkty',name.id]" mat-button><mat-icon>{{name.matIcon}}</mat-icon><span>{{name.value}}</span></button>
+    
   </div>
   </mat-toolbar-row>
 </mat-toolbar>
