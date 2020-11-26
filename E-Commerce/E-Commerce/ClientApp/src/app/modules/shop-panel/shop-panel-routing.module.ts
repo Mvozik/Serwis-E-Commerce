@@ -5,7 +5,7 @@ import { ShopBaseComponent } from './components/shop-base/shop-base.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { ProductsComponent } from './components/laptops-computers/products.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 

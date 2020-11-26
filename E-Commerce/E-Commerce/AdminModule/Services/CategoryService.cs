@@ -92,15 +92,15 @@ namespace E_Commerce.AdminModule.Services
                 .ToListAsync();
         }
 
-        public async Task<List<Product>> GetProductsBySectionIdAsync(int id)
+        public async Task<List<Category>> GetCategoriesBySectionIdAsync(int id)
         {
             var section = await _dbContext.Sections.FirstOrDefaultAsync(x => x.Id == id);
             if(section==null)
             {
                 return null;
             }
-            var products = await _dbContext.Products.Where(x => x.SubCategory.Category.Section.Id == section.Id).ToListAsync();
-            return products;
+            var categories = await _dbContext.Categories.Include(p=>p.SubCategories).Where(x => x.SectionId == section.Id).ToListAsync();
+            return categories;
         }
 
         public async Task<List<Section>> GetSectionsAsync()

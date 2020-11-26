@@ -25,7 +25,7 @@ export class AppComponent {
     
     if (this.tokenExpired(localStorage.getItem("JWT_TOKEN")))
     {
-      this.authService.refreshToken().subscribe(response=>console.log(response));
+      this.authService.refreshToken().subscribe();
     }
     else
     {

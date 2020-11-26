@@ -46,6 +46,17 @@ namespace E_Commerce.AdminModule.Controllers
             return Ok(response);
         }
 
+        [HttpGet("CategoryBySectionId")]
+        public async Task<IActionResult> GetCategoryBySectionIdAsync(int id)
+        {
+            var response = await _categoryService.GetCategoriesBySectionIdAsync(id);
+            if(response==null)
+            {
+                return BadRequest();
+            }
+            return Ok(response);
+        }
+
         [HttpPost("Category")]
         public async Task<IActionResult> PostCategories(PostCategoryDto postCategoryDto)
         {
@@ -61,16 +72,7 @@ namespace E_Commerce.AdminModule.Controllers
 
         }
 
-        [HttpGet("products-by-section")]
-        public async Task<IActionResult> GetSectionCategories(int id)
-        {
-            var response = await _categoryService.GetProductsBySectionIdAsync(id);
-            if(response==null)
-            {
-                return BadRequest();
-            }
-            return Ok(response);
-        }
+      
 
 
     }

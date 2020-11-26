@@ -39,7 +39,6 @@ export class CategoriesComponent implements OnInit {
   }
   addSection()
   {
-    console.log(this.sectionForm.value);
     
   }
   addCategory()

@@ -3,12 +3,12 @@
       <button mat-button routerLink=""><img class="logo-image" src="../../../../../assets/photos/7cbf82dd32ab7e88.svg"></button>
       <div></div>
       <button mat-button routerLink="koszyk"><mat-icon >shopping_basket</mat-icon><span>Koszyk</span></button>
-      <button mat-icon-button (click)="click()"><mat-icon>{{maticon}}</mat-icon><span>{{text}}</span></button>
+      <button mat-button (click)="click()"><mat-icon>{{maticon}}</mat-icon><span>{{text}}</span></button>
       
     </mat-toolbar-row>
   <mat-toolbar-row class="category-container">
     <div class="categories">
-    <button [routerLink]="['',name.id]" *ngFor="let name of names" [routerLink]="['produkty',name.id]" mat-button><mat-icon>{{name.matIcon}}</mat-icon><span>{{name.value}}</span></button>
+    <button *ngFor="let name of names" [routerLink]="['produkty',name.id]" mat-button><mat-icon>{{name.matIcon}}</mat-icon><span>{{name.value}}</span></button>
     
   </div>
   </mat-toolbar-row>

@@ -18,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { ProductsComponent } from './components/laptops-computers/products.component';
+import { ProductsComponent } from './components/products/products.component';
 
 import { AccesoriesComponent } from './components/accesories/accesories.component';
 

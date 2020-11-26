@@ -14,7 +14,13 @@ export function shoppingCartReducer(state:ShoppingCartModel = initial , action :
         case ShoppingStateActions.SET_SHOPPING_CART:
             return action.payload;
         case ShoppingStateActions.REMOVE_SHOPPING_CART:
-            return null;
+            let empty : ShoppingCartModel={
+                id:0,
+                userId:"",
+                shoppingCartItems:[],
+                active:false
+            };
+            return empty;
         case ShoppingStateActions.REMOVE_SHOPPING_CART_ITEM:
             let newShoppingCartItems = state.shoppingCartItems.filter(obj => obj.id !== action.payload);
             let deletedItem : ShoppingCartModel = { 

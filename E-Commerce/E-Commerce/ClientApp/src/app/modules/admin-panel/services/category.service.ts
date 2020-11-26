@@ -16,7 +16,7 @@ export class CategoryService {
   constructor(private httpClient:HttpClient) { }
   
   private url = baseUrl+"Category/";
-
+  
   getCategories():Observable<CategoryModel[]>
   {
     return this.httpClient.get<CategoryModel[]>(this.url+"Category")
@@ -32,5 +32,9 @@ export class CategoryService {
   getSections():Observable<SectionModel[]>
   {
     return this.httpClient.get<SectionModel[]>(this.url+"Sections");
+  }
+  getCategoriesBySectionId(id:number):Observable<CategoryModel[]>
+  {
+    return this.httpClient.get<CategoryModel[]>(this.url+"CategoryBySectionId?id="+id);
   }
 }

@@ -12,7 +12,7 @@ namespace E_Commerce.AdminModule.Services.IServices
         Task<List<Category>> GetCategoriesAsync();
         Task<List<SubCategory>> GetSubCategoriesAsync();
         Task<List<Section>> GetSectionsAsync();
-        Task<List<Product>> GetProductsBySectionIdAsync(int id);
+        Task<List<Category>> GetCategoriesBySectionIdAsync(int id);
 
         Task<Section> AddSectionAsync(Section section);
         Task<SubCategory> AddSubCategoryAsync(PostSubCategoryDto postSubCategoryDto);

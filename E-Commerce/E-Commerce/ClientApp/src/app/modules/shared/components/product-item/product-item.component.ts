@@ -20,9 +20,9 @@ export class ProductItemComponent implements OnInit {
   shoppingCartId:any;
   constructor(private shoppingService:ShoppingCartService,private store:Store<AppState>,private _snackBar: MatSnackBar ) { }
 
-  convertedUrl:string;
   
   ngOnInit(): void {
+    this.product.productPhoto="data:image/jpeg;base64,"+this.product.productPhoto;
     if(this.product.productPhoto=="data:image/jpeg;base64,null")
     {
       this.product.productPhoto = "../../../../../assets/photos/default.svg";

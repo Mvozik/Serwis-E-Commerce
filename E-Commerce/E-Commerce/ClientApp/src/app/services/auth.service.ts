@@ -62,7 +62,6 @@ export class AuthService {
   logout()
   {
     this.store.dispatch(new ShoppingCartActions.RemoveShoppingCart());
-    this.doLogoutUser();
     return this.http.post<any>(this.url+"Logout?refreshToken="+this.getRefreshToken(),{}).pipe(tap(()=>this.doLogoutUser()));
   }
 

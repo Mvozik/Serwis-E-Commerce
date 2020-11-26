@@ -94,5 +94,15 @@ namespace E_Commerce.ShopModule.Controllers
             return Ok(response.Id);
         }
 
+        [HttpGet("products-by-section")]
+        public async Task<IActionResult> GetSectionCategories(int id)
+        {
+            var response = await _productService.GetProductsBySectionIdAsync(id);
+            if (response == null)
+            {
+                return BadRequest();
+            }
+            return Ok(response);
+        }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -116,6 +117,19 @@ namespace E_Commerce.ShopModule.Services
             }
             return null;
         }
+
+        public async Task<List<Product>> GetProductsBySectionIdAsync(int id)
+        {
+            var section = await _dbContext.Sections.FirstOrDefaultAsync(x => x.Id == id);
+            if (section == null)
+            {
+                return null;
+            }
+            var products = await _dbContext.Products.Where(x => x.SubCategory.Category.Section.Id == section.Id).ToListAsync();
+
+            return products;
+        }
+
 
     }
 
