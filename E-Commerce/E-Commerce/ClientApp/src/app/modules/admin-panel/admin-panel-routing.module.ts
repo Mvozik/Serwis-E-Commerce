@@ -9,6 +9,7 @@ import { UsersPanelComponent } from './components/users-panel/users-panel.compon
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { MainPageOptionsComponent } from './components/main-page-options/main-page-options.component';
 
 
 
@@ -46,6 +47,10 @@ const routes: Routes = [
             {
                 path:"kategorie",
                 component:CategoriesComponent
+            },
+            {
+                path:"strona-glowna",
+                component:MainPageOptionsComponent
             },
         ]
 

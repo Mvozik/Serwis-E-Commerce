@@ -29,6 +29,11 @@ namespace E_Commerce.ShopModule.Services
             return await _dbContext.Products.ToListAsync();
         }
 
+        public async Task<List<MainPageItem>> GetMainPageItemsAsync()
+        {
+            var items = await _dbContext.MainPageItems.Include(p=>p.Product).OrderBy(p=>p.Order).ToListAsync();
+            return items;
+        }
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
@@ -130,7 +135,24 @@ namespace E_Commerce.ShopModule.Services
             return products;
         }
 
-
+        public async Task<MainPageItem> AddMainPageItem(PostMainPageItem postMainPageItem)
+        {
+            var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == postMainPageItem.ProductId);
+            if(product==null || postMainPageItem.Order>9)
+            {
+                return null;
+            }
+            var existingOrder = await _dbContext.MainPageItems.FirstOrDefaultAsync(x => x.Order == postMainPageItem.Order);
+            if(existingOrder!=null)
+            {
+                _dbContext.Remove(existingOrder);
+                await _dbContext.SaveChangesAsync();
+            }
+            
+            var newEntity = _dbContext.MainPageItems.Add(new MainPageItem { Order = postMainPageItem.Order, Product=product });
+            await _dbContext.SaveChangesAsync();
+            return newEntity.Entity;
+        }
     }
 
     

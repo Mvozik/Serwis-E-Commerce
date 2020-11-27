@@ -23,6 +23,7 @@ namespace E_Commerce.Shared.Data
         public DbSet<Section> Sections { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<MainPageItem> MainPageItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -56,6 +57,11 @@ namespace E_Commerce.Shared.Data
                 .HasForeignKey(p => p.SubCategoryId)
                 .IsRequired();
 
+            builder.Entity<MainPageItem>()
+               .HasOne(p => p.Product)
+               .WithMany()
+               .HasForeignKey(p => p.ProductId)
+               .IsRequired();
             base.OnModelCreating(builder);
         }
 

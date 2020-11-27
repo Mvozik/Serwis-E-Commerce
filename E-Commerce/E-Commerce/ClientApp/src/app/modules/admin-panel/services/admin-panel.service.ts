@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseUrl } from '../../../../environments/environment';
+import { AddMainPageItemModel } from '../models/add-mainpage-item.model';
 import { AddProductModel } from '../models/add-product.model'
+import { MainPageItem } from '../models/mainpage-item.model';
 import { ProductModel } from '../models/product.model';
 @Injectable({
   providedIn: 'root'
@@ -23,9 +25,14 @@ export class AdminPanelService {
     return this.httpClient.get(this.url+"/all");
   }
 
-  getMainPageProducts(): Observable<any>
+  getMainPageProducts(): Observable<MainPageItem[]>
   {
-    return this.httpClient.get(this.url+"/mainpage");
+    return this.httpClient.get<MainPageItem[]>(this.url+"/mainpage");
+  }
+
+  postMainPageItem(model:AddMainPageItemModel): Observable<MainPageItem[]>
+  {
+    return this.httpClient.post<MainPageItem[]>(this.url+"/add-to-mainpage",model);
   }
 
   getProductById(id:number): Observable<any>

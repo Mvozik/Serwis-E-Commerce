@@ -19,9 +19,6 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { SharedModule } from '../shared/shared.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProductsComponent } from './components/products/products.component';
-
-import { AccesoriesComponent } from './components/accesories/accesories.component';
-
 @NgModule({
   declarations: [
     BasketComponent,
@@ -32,7 +29,7 @@ import { AccesoriesComponent } from './components/accesories/accesories.componen
      RegisterFormComponent,
      LoginPageComponent,
      ProductsComponent,
-     AccesoriesComponent
+     
     ],
   imports: [
     ShopPanelRoutingModule,

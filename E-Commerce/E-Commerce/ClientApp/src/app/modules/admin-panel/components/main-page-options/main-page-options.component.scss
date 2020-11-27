@@ -1,23 +1,20 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
 .adverts {
   display: grid;
   grid-template-columns: 1fr 16.6% 16.6% 16.6% 16.6% 16.6%;
   grid-template-rows: 1fr 1fr;
   place-items: center;
-  max-width: 1800px;
+  max-width: 1400px;
 }
-app-advert-card {
-  margin: 2px;
-}
-.sale {
-  grid-row: 1/3;
-  grid-column: 1/3;
-  transform: scale(1.8);
-}
-.carousel {
-  width: 80%;
-  margin: auto;
-}
-
 @media screen and (max-width: 1600px) {
   .adverts {
     grid-template-columns: 20% 20% 20% 20% 20%;
@@ -48,4 +45,9 @@ app-advert-card {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
+}
+.sale {
+  grid-row: 1/3;
+  grid-column: 1/3;
+  transform: scale(1.8);
 }

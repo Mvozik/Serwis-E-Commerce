@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product:ProductModel;
+  @Input() disabled:boolean=false;
   shoppingCart:Observable<ShoppingCartModel>;
   shoppingCartId:any;
   constructor(private shoppingService:ShoppingCartService,private store:Store<AppState>,private _snackBar: MatSnackBar ) { }

@@ -16,6 +16,7 @@ namespace E_Commerce.ShopModule.Services.IService
         Task<OperationResult> UpdateProductAsync(PutProductDto putAdvertDto);
         Task<OperationResult> PostProductAsync(PostProductDto postAdvertDto);
         Task<List<Product>> GetProductsBySectionIdAsync(int id);
-
+        Task<List<MainPageItem>> GetMainPageItemsAsync();
+        Task<MainPageItem> AddMainPageItem(PostMainPageItem postMainPageItem);
     }
 }

@@ -17,4 +17,8 @@ export class ProductService {
     return this.httpClient.get<ProductModel[]>(this.url+"?id="+id);
   }
 
+  
+
+
+
 }

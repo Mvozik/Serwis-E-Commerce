@@ -35,23 +35,26 @@ namespace E_Commerce.ShopModule.Controllers
         public async Task<IActionResult> GetRandomProducts()
         {
            
-            var response = await _productService.GetProductsAsync();
-            if(response.Count>9)
-            {
-                var r = new Random();
-                int count = response.Count;
-                List<Product> products = new List<Product>();
-                for (int i = 0; i < 9; i++)
-                {
-                    int indexVal = r.Next(count);
-                    products.Add(response[indexVal]);
-                }
+            var response = await _productService.GetMainPageItemsAsync();
+            
+            
+            return Ok(response);
+            
 
-                return Ok(products);
-            }
-            return BadRequest();
-
+            
         }
+
+        [HttpPost("add-to-mainpage")]
+        public async Task<IActionResult> PostProductToMainPage(PostMainPageItem postMainPageItem)
+        {
+            var response = await _productService.AddMainPageItem(postMainPageItem);
+            if (response == null )
+            {
+                return BadRequest();
+            }
+            return Ok(response);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetProduct(int id)
         {

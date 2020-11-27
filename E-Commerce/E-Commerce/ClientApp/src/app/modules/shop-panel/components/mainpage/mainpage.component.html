@@ -33,23 +33,34 @@
 
 <h1 class="margined">Najczęściej kupowane</h1>
 
-<div class="adverts" *ngIf="products">
-  <app-product-item class="sale"
+<div class="adverts" *ngIf="finished==true">
+
+<app-product-item class="sale"
   [product]="products[0]">
-</app-product-item><app-product-item
+</app-product-item>
+<app-product-item
 [product]="products[1]">
-</app-product-item><app-product-item
+</app-product-item>
+<app-product-item
 [product]="products[2]">
-</app-product-item><app-product-item 
+</app-product-item>
+<app-product-item 
 [product]="products[3]">
-</app-product-item><app-product-item
+</app-product-item>
+<app-product-item
 [product]="products[4]">
-</app-product-item><app-product-item
+</app-product-item>
+<app-product-item
 [product]="products[5]">
-</app-product-item><app-product-item
+</app-product-item>
+<app-product-item
 [product]="products[6]">
-</app-product-item><app-product-item class="advert8" 
+</app-product-item>
+<app-product-item class="advert8" 
 [product]="products[7]">
-</app-product-item><app-product-item class="advert9" 
+</app-product-item>
+<app-product-item class="advert9" 
 [product]="products[8]">
-</app-product-item></div>
+</app-product-item>
+
+</div>
