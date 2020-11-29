@@ -98,13 +98,27 @@ namespace E_Commerce.ShopModule.Controllers
         }
 
         [HttpGet("products-by-section")]
-        public async Task<IActionResult> GetSectionCategories(int id)
+        public async Task<IActionResult> GetProductsBySection(int id)
         {
             var response = await _productService.GetProductsBySectionIdAsync(id);
             if (response == null)
             {
                 return BadRequest();
             }
+            return Ok(response);
+        }
+
+        [HttpGet("products-by-category")]
+        public async Task<IActionResult> GetProductsByCategory(int id)
+        {
+            var response = await _productService.GetProductsByCategoryIdAsync(id);
+            return Ok(response);
+        }
+
+        [HttpGet("products-by-subcategory")]
+        public async Task<IActionResult> GetProductsBySubCategory(int id)
+        {
+            var response = await _productService.GetProductsBySubCategoryIdAsync(id);
             return Ok(response);
         }
     }

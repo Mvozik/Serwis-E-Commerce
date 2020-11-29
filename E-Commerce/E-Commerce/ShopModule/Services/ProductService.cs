@@ -153,6 +153,33 @@ namespace E_Commerce.ShopModule.Services
             await _dbContext.SaveChangesAsync();
             return newEntity.Entity;
         }
+
+        public async Task<List<Product>> GetProductsByCategoryIdAsync(int id)
+        {
+            var products = await _dbContext.Products
+                .Include(p => p.SubCategory)
+                .ThenInclude(p => p.Category)
+                .Where(x => x.SubCategory.Category.Id == id)
+                .ToListAsync();
+
+            if(products==null)
+            {
+                return null;
+            }
+            return products;
+        }
+        public async Task<List<Product>> GetProductsBySubCategoryIdAsync(int id)
+        {
+            var products = await _dbContext.Products
+                .Where(x => x.SubCategoryId == id)
+                .ToListAsync();
+
+            if (products == null)
+            {
+                return null;
+            }
+            return products;
+        }
     }
 
     

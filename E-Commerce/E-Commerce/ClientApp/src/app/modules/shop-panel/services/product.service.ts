@@ -10,14 +10,22 @@ import { ProductModel } from '../../admin-panel/models/product.model';
 export class ProductService {
 
   constructor(private httpClient:HttpClient) { }
-  url = baseUrl + "Product/products-by-section";
+  url = baseUrl + "Product";
   
   getProductsBySectionId(id:number):Observable<ProductModel[]>
   {
-    return this.httpClient.get<ProductModel[]>(this.url+"?id="+id);
+    return this.httpClient.get<ProductModel[]>(this.url+"/products-by-section?id="+id);
   }
 
-  
+  getProductsByCategoryId(id:number):Observable<ProductModel[]>
+  {
+    return this.httpClient.get<ProductModel[]>(this.url+"/products-by-category?id="+id);
+  }
+
+  getProductsBySubCategoryId(id:number):Observable<ProductModel[]>
+  {
+    return this.httpClient.get<ProductModel[]>(this.url+"/products-by-subcategory?id="+id);
+  }
 
 
 

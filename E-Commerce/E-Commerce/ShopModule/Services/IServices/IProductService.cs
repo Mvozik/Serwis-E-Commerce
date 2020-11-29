@@ -18,5 +18,8 @@ namespace E_Commerce.ShopModule.Services.IService
         Task<List<Product>> GetProductsBySectionIdAsync(int id);
         Task<List<MainPageItem>> GetMainPageItemsAsync();
         Task<MainPageItem> AddMainPageItem(PostMainPageItem postMainPageItem);
+        Task<List<Product>> GetProductsByCategoryIdAsync(int id);
+        Task<List<Product>> GetProductsBySubCategoryIdAsync(int id);
+
     }
 }

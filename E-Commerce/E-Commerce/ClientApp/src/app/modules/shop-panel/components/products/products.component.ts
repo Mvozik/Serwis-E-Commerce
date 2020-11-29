@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoryModel } from '../../../admin-panel/models/category.model';
 import { ProductModel } from '../../../admin-panel/models/product.model';
+import { SubCategoryModel } from '../../../admin-panel/models/sub-category.model';
 import { CategoryService } from '../../../admin-panel/services/category.service';
 import { ProductService } from '../../services/product.service';
 
@@ -30,4 +31,13 @@ export class ProductsComponent implements OnInit {
     
   }
 
+  changeProductsByCategory(event:CategoryModel)
+  {
+    this.productService.getProductsByCategoryId(event.id).subscribe(response=>this.products=response);
+  }
+
+  changeProductsBySubCategory(event:SubCategoryModel)
+  {
+    this.productService.getProductsBySubCategoryId(event.id).subscribe(response=>this.products=response);
+  }
 }
