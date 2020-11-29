@@ -24,6 +24,8 @@ namespace E_Commerce.Shared.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<MainPageItem> MainPageItems { get; set; }
+        public DbSet<UserInformations> UserInformations { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -62,6 +64,25 @@ namespace E_Commerce.Shared.Data
                .WithMany()
                .HasForeignKey(p => p.ProductId)
                .IsRequired();
+
+            builder.Entity<Order>()
+                .HasOne(p => p.UserInformations)
+                .WithMany()
+                .HasForeignKey(p => p.UserInformationsId)
+                .IsRequired();
+
+            builder.Entity<Order>()
+               .HasOne(p => p.ShoppingCart)
+               .WithMany()
+               .HasForeignKey(p => p.ShoppingCartId)
+               .IsRequired();
+
+            builder.Entity<User>()
+               .HasOne(p => p.UserInformations)
+               .WithMany()
+               .HasForeignKey(p => p.UserInformationsId)
+               .IsRequired();
+
             base.OnModelCreating(builder);
         }
 

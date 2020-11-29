@@ -5,6 +5,7 @@ using E_Commerce.Shared.Models;
 using E_Commerce.Shared.Services.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,12 @@ namespace E_Commerce.Shared.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public async Task<UserInformations> CreateEmptyUserInformationsAsync()
+        {
+            var created = await _context.UserInformations.AddAsync(new UserInformations());
+            return created.Entity;
+        }
+
         public IEnumerable<Claim> GetClaims()
         {
             var claims = _httpContextAccessor.HttpContext?.User?.Claims;
@@ -55,5 +62,20 @@ namespace E_Commerce.Shared.Services
 
             return null;
         }
+        public async Task<User> GetCurrentUserWithInformationsAsync()
+        {
+            var userClaims = GetClaims().ToList();
+
+            if (userClaims.Any())
+            {
+                var name = userClaims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+                return await _context.Users.Include(p => p.UserInformations).FirstOrDefaultAsync(x => x.UserName == name);
+            }
+
+            return null;
+        }
+        
+
+
     }
 }
