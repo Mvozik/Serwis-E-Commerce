@@ -24,14 +24,15 @@ namespace E_Commerce.Shared.Services
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly DataContext _context;
-
-        public IdentityService(UserManager<User> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, DataContext context, RoleManager<IdentityRole> roleManager)
+        private readonly IUserService _userService;
+        public IdentityService(UserManager<User> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, DataContext context, RoleManager<IdentityRole> roleManager, IUserService userService)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
             _tokenValidationParameters = tokenValidationParameters;
             _context = context;
             _roleManager = roleManager;
+            _userService = userService;
         }
 
         public async Task<AuthenticationResult> LoginAsync(UserPostLoginDto request)
@@ -156,13 +157,14 @@ namespace E_Commerce.Shared.Services
 
             }
 
+            var userInformations = await _userService.CreateEmptyUserInformationsAsync();
+
             var user = new User
             {
                 Id = Guid.NewGuid().ToString(),
                 Email = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserName = request.Email
+                UserName = request.Email,
+                UserInformations = userInformations
             };
 
             var createdUser = await _userManager.CreateAsync(user, request.Password);

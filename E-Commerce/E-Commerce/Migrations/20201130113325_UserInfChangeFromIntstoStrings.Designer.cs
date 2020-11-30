@@ -4,14 +4,16 @@ using E_Commerce.Shared.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_Commerce.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201130113325_UserInfChangeFromIntstoStrings")]
+    partial class UserInfChangeFromIntstoStrings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,18 +81,9 @@ namespace E_Commerce.Migrations
                     b.Property<bool>("IsShipped")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ShippingFormat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("ShippingPrice")
-                        .HasColumnType("float");
-
                     b.Property<int?>("ShoppingCartId")
                         .IsRequired()
                         .HasColumnType("int");
-
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
 
                     b.Property<int?>("UserInformationsId")
                         .IsRequired()
@@ -184,24 +177,6 @@ namespace E_Commerce.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sections");
-                });
-
-            modelBuilder.Entity("E_Commerce.Shared.Entities.ShippingCompany", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShippingCompanies");
                 });
 
             modelBuilder.Entity("E_Commerce.Shared.Entities.ShoppingCart", b =>

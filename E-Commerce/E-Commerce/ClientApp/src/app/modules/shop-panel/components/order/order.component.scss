@@ -1,0 +1,17 @@
+form {
+  margin: auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.buttons {
+  display: flex;
+  flex-flow: row-reverse;
+}
+.shipping-list {
+  display: flex;
+  flex-direction: column;
+}
+.shipping-item {
+  margin-top: 20px;
+}

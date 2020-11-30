@@ -16,5 +16,6 @@ namespace E_Commerce.ShopModule.Services.IService
         Task<OperationResult> DeleteProductFromShoppingCartAsync(int ShoppingCardItemId);
         Task<bool> DeleteAllProductsFromShoppingCartAsync(int ShoppingCardId);
         Task<ShoppingCartItem> ChangeQuantityAsync(ChangeQuantityDto changeQuantityDto);
+        Task<bool> ChangeExistingShoppingCartActiveValueAndGenerateNew(ShoppingCart shoppingCart, User user);
     }
 }

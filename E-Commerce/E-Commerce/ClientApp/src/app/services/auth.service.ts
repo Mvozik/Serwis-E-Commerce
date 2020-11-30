@@ -13,6 +13,7 @@ import * as LoginStateActions from './../actions/login.actions';
 import * as ShoppingCartActions from './../actions/shoppingcart.actions';
 import { ShoppingCartService } from '../modules/shop-panel/services/shopping-cart.service';
 import { ShoppingCartModel } from '../modules/shop-panel/models/Shopping-cart.model';
+import { UserInformationsModel } from '../models/user-informations.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -106,4 +107,17 @@ export class AuthService {
   {
     localStorage.setItem(this.JWT_TOKEN,token)
   }
+
+  getUserInformations():Observable<UserInformationsModel>
+  {
+    return this.http.get<UserInformationsModel>(this.url+"UserInformations");
+  }
+
+  putUserInformations(model:UserInformationsModel):Observable<UserInformationsModel>
+  {
+    return this.http.put<UserInformationsModel>(this.url+"UpdateUserInformations",model);
+    
+  }
+
+
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Shared.Dtos
 {
-    public class UserPostRegistrationDto
+    public class PutUserInformationsDto
     {
-        [EmailAddress]
+        
         public string Email { get; set; }
         public string Password { get; set; }
 

@@ -6,6 +6,7 @@ import { BasketComponent } from './components/basket/basket.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProductsComponent } from './components/products/products.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [
             {
                 path:"produkty/:id",
                 component:ProductsComponent
+            },
+            {
+                path:"zamówienie",
+                component:OrderComponent
             },
         ]
     },

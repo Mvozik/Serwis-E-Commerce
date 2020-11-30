@@ -19,6 +19,11 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { SharedModule } from '../shared/shared.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProductsComponent } from './components/products/products.component';
+import { OrderComponent } from './components/order/order.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatListModule} from '@angular/material/list';
+
 @NgModule({
   declarations: [
     BasketComponent,
@@ -29,11 +34,15 @@ import { ProductsComponent } from './components/products/products.component';
      RegisterFormComponent,
      LoginPageComponent,
      ProductsComponent,
+     OrderComponent,
      
     ],
   imports: [
     ShopPanelRoutingModule,
     SharedModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatListModule
     
   ],
   exports:
