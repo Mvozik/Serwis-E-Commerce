@@ -20,11 +20,12 @@ namespace E_Commerce.ShopModule.Services
     {
         private readonly DataContext _dbContext;
         private readonly IUserService _userService;
-
-        public OrderService(DataContext dbContext,IUserService userService)
+        private readonly IShoppingCartService _shoppingCartService;
+        public OrderService(DataContext dbContext, IUserService userService, IShoppingCartService shoppingCartService)
         {
             _dbContext = dbContext;
             _userService = userService;
+            _shoppingCartService = shoppingCartService;
         }
 
         public async Task<List<Order>> GetUserOrders()
@@ -51,7 +52,7 @@ namespace E_Commerce.ShopModule.Services
                 return null;
             }
             
-            var shoppingCart = await _dbContext.ShoppingCarts.FirstOrDefaultAsync(x=> x.UserId==user.Id && x.Active == true);
+            var shoppingCart = await _dbContext.ShoppingCarts.Include(p=>p.ShoppingCartItems).ThenInclude(p=>p.Product).FirstOrDefaultAsync(x=> x.UserId==user.Id && x.Active == true);
             if(shoppingCart==null)
             {
                 return null;
@@ -59,16 +60,36 @@ namespace E_Commerce.ShopModule.Services
 
             var order = new Order
             {
-                Company = postOrderDto.Company,
                 IsPayed = false,
                 IsRealized = false,
                 IsShipped = false,
                 ShoppingCart = shoppingCart,
                 UserInformations = user.UserInformations,
+                ShippingFormat = postOrderDto.ShippingCompany
             };
 
+            if(user.UserInformations.Nip!="")
+            {
+                order.Company = true;
+            }
+            else
+            {
+                order.Company = false; 
+            }
+
+            double totalCost = 0;
+
+            foreach (var item in shoppingCart.ShoppingCartItems)
+            {
+                totalCost += item.Product.Price * item.Quantity;
+            }
+
+            totalCost += postOrderDto.ShippingPrice;
+            order.TotalPrice = totalCost;
             var newOrder = await _dbContext.Orders.AddAsync(order);
             await _dbContext.SaveChangesAsync();
+
+            await _shoppingCartService.ChangeExistingShoppingCartActiveValueAndGenerateNew(shoppingCart, user);
             return newOrder.Entity;
         }
     }

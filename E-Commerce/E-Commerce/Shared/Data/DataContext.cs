@@ -26,7 +26,7 @@ namespace E_Commerce.Shared.Data
         public DbSet<MainPageItem> MainPageItems { get; set; }
         public DbSet<UserInformations> UserInformations { get; set; }
         public DbSet<Order> Orders { get; set; }
-
+        public DbSet<ShippingCompany> ShippingCompanies { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ShoppingCartItem>()

@@ -11,8 +11,8 @@ namespace E_Commerce.Shared.Entities
         public string SurName { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public int BuildingNumber { get; set; }
-        public int FlatNumber { get; set; }
+        public string BuildingNumber { get; set; }
+        public string FlatNumber { get; set; }
         public string PostCode { get; set; }
         public string PhoneNumber { get; set; }
         public string Nip { get; set; }

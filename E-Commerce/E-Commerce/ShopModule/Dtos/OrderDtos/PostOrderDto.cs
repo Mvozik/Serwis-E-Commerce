@@ -7,7 +7,7 @@ namespace E_Commerce.ShopModule.Dtos.OrderDtos
 {
     public class PostOrderDto
     {
-        public bool Company { get; set; }
-
+        public string ShippingCompany { get; set; }
+        public double ShippingPrice { get; set; }
     }
 }

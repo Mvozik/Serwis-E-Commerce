@@ -11,12 +11,14 @@ namespace E_Commerce.Shared.Entities
 
         [ForeignKey("UserInformationsId")]
         public UserInformations UserInformations { get; set; }
-        public int UserInformationsId { get; set; }
+        public int? UserInformationsId { get; set; }
 
         [ForeignKey("ShoppingCartId")]
         public ShoppingCart ShoppingCart { get; set; }
-        public int ShoppingCartId { get; set; }
-
+        public int? ShoppingCartId { get; set; }
+        public string ShippingFormat { get; set; }
+        public double ShippingPrice { get; set; }
+        public double TotalPrice { get; set; }
         public bool Company { get; set; }
         public bool IsPayed { get; set; }
         public bool IsShipped { get; set; }

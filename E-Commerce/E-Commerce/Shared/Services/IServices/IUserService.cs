@@ -15,5 +15,7 @@ namespace E_Commerce.Shared.Services.IServices
         Task<User> GetCurrentUserAsync();
         Task<User> GetCurrentUserWithInformationsAsync();
         Task<UserInformations> CreateEmptyUserInformationsAsync();
+        Task<UserInformations> GetUserInformationsAsync();
+        Task<UserInformations> PutUserInformationsAsync(UserInformations userInformations);
     }
 }

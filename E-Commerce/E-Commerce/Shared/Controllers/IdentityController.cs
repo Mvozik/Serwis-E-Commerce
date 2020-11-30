@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Shared.Dtos;
 using E_Commerce.Shared.Dtos.Responses;
+using E_Commerce.Shared.Entities;
 using E_Commerce.Shared.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,10 +16,11 @@ namespace E_Commerce.Shared.Controllers
     public class IdentityController : Controller
     {
         private readonly IIdentityService _identityService;
-
-        public IdentityController(IIdentityService identityService)
+        private readonly IUserService _userService;
+        public IdentityController(IIdentityService identityService, IUserService userService)
         {
             _identityService = identityService;
+            _userService = userService;
         }
 
         [HttpPost("Register")]
@@ -80,7 +82,27 @@ namespace E_Commerce.Shared.Controllers
             return Ok();
         }
 
+        [HttpGet("UserInformations")]
+        public async Task<IActionResult> GetUserInformations()
+        {
+            var response = await _userService.GetUserInformationsAsync();
+            if(response==null)
+            {
+                return Unauthorized();
+            }
+            return Ok(response);
+        }
 
+        [HttpPut("UpdateUserInformations")]
+        public async Task<IActionResult> PutUserInformations(UserInformations userInformations)
+        {
+            var response = await _userService.PutUserInformationsAsync(userInformations);
+            if (response == null)
+            {
+                return Ok("nie znaleziono");
+            }
+            return Ok(response);
+        }
 
     }
 }

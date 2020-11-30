@@ -137,6 +137,13 @@ namespace E_Commerce.ShopModule.Services
         }
 
 
-
+        public async Task<bool> ChangeExistingShoppingCartActiveValueAndGenerateNew(ShoppingCart shoppingCart,User user)
+        {
+            shoppingCart.Active = false;
+            _dbContext.ShoppingCarts.Update(shoppingCart);
+            await _dbContext.AddAsync(new ShoppingCart { Active=true, UserId = user.Id });
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
     }
 }

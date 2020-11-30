@@ -16,7 +16,8 @@
 <h1>Łączna kwota</h1>
 <div></div>
 <h3>{{sum}} zł</h3>
-<button mat-button (click)="onClick()">Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon></button>
+<button *ngIf="cart.shoppingCartItems.length==0" mat-raised-button color="primary" disabled>Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon></button>
+<button *ngIf="cart.shoppingCartItems.length>0" mat-raised-button color="primary" routerLink="/zamówienie">Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon></button>
 </mat-card>
 
 </div>

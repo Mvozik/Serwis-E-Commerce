@@ -1,0 +1,92 @@
+<mat-horizontal-stepper linear>
+    <mat-step label="Dane odbiorcy" >
+      <form [formGroup]="userInfoForm">
+        
+        <mat-form-field>
+            <mat-label>Imie</mat-label>
+            <input formControlName="name" matInput  type="text" placeholder="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nazwisko</mat-label>
+            <input matInput formControlName="surName" type="text" placeholder="surName">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Miasto</mat-label>
+            <input matInput formControlName="city" type="text" placeholder="city">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Kod Pocztowy</mat-label>
+            <input matInput formControlName="postCode" type="text" placeholder="postCode">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Ulica</mat-label>
+            <input matInput formControlName="street" type="text" placeholder="street">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Numer Budynku</mat-label>
+          <input matInput formControlName="buildingNumber" type="text" placeholder="buildingNumber">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Numer Mieszkania</mat-label>
+          <input matInput formControlName="flatNumber" type="text" placeholder="flatNumber">
+        </mat-form-field>
+    
+        <mat-form-field>
+          <mat-label>Numer Telefonu</mat-label>
+          <input matInput formControlName="phoneNumber" type="text" placeholder="phoneNumber">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>NIP</mat-label>
+          <input matInput formControlName="nip" type="text" placeholder="nip">
+        </mat-form-field>
+
+    </form>
+
+      <div class="buttons">
+        <button mat-raised-button matStepperNext color="primary" (click)="putUserInfoForm()">Dalej</button>
+      </div>
+    </mat-step>
+    <mat-step label="Sposób dostawy" completed={{isShipping}}>
+
+      <mat-radio-group class="shipping-list" *ngIf="shippingList">
+        <mat-radio-button class="shipping-item" value={{shipping.id}} *ngFor="let shipping of shippingList" (change)="changeShipping(shipping)">{{shipping.companyName}} {{shipping.price}}</mat-radio-button>
+      </mat-radio-group>
+
+
+     <div class="buttons">
+       <button mat-button (click)="calculateSum()" matStepperNext color="primary">Dalej</button>
+       <button mat-button matStepperPrevious color="primary">Powrót</button>
+     </div>
+    </mat-step>
+    <mat-step label="Podsumowanie">
+      <mat-label>Dane odbiorcy</mat-label>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Imię: {{userInfoForm.value.name}}</mat-list-item>
+        <mat-list-item role="listitem">Nazwisko: {{userInfoForm.value.surName}}</mat-list-item>
+        <mat-list-item role="listitem">Miasto: {{userInfoForm.value.city}}</mat-list-item>
+        <mat-list-item role="listitem">Kod pocztowy: {{userInfoForm.value.postCode}}</mat-list-item>
+        <mat-list-item role="listitem">Ulica: {{userInfoForm.value.street}}</mat-list-item>
+        <mat-list-item role="listitem">Numer budynku: {{userInfoForm.value.buildingNumber}}</mat-list-item>
+        <mat-list-item role="listitem">Numer mieszkania: {{userInfoForm.value.flatNumber}}</mat-list-item>
+        <mat-list-item role="listitem">Numer telefonu: {{userInfoForm.value.phoneNumber}}</mat-list-item>
+        <mat-list-item role="listitem">Numer NIP: {{userInfoForm.value.nip}}</mat-list-item>
+      </mat-list>
+      <mat-label>Forma Dostawcy</mat-label>
+      <mat-list role="list" *ngIf="shipping">
+        <mat-list-item role="listitem">{{shipping.companyName}}</mat-list-item>
+      </mat-list>
+      <mat-label>Kwota do zapłaty</mat-label>
+      <h3>{{finalSum}}</h3>
+      <div class="buttons">
+        <button mat-button (click)="submit()">Zatwierdź</button>
+        <button mat-button matStepperPrevious>Powrót</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
