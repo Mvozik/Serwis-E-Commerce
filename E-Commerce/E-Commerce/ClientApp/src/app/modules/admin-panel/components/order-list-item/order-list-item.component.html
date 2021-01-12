@@ -1,0 +1,24 @@
+<div class="container">
+  <p>{{ order.id }}</p>
+  <mat-icon *ngIf="order.isPayed">check_circle_outline </mat-icon>
+  <mat-icon *ngIf="!order.isPayed"> cancel </mat-icon>
+
+  <mat-icon *ngIf="order.isShipped">check_circle_outline </mat-icon>
+  <mat-icon *ngIf="!order.isShipped"> cancel </mat-icon>
+
+  <mat-icon *ngIf="order.isRealized">check_circle_outline </mat-icon>
+  <mat-icon *ngIf="!order.isRealized"> cancel</mat-icon>
+  <app-drop-menu [matMenuTriggerFor]="menu"></app-drop-menu>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item class="option" (click)="changePaymentStatus()">
+    Zmień status płatności
+  </button>
+  <button mat-menu-item class="option" (click)="changeShippingStatus()">
+    Zmień status wysyłki
+  </button>
+  <button mat-menu-item class="option" (click)="changeRealizationStatus()">
+    Zmień status realizacji
+  </button>
+</mat-menu>

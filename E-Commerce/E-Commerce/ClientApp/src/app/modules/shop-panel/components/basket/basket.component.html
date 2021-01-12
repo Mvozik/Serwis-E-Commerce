@@ -1,23 +1,52 @@
 <div class="message" *ngIf="!cart">
-    <h1>Twój koszyk jest pusty!</h1>
+  <h1>Twój koszyk jest pusty!</h1>
 </div>
 
-<div class="basket" *ngIf="cart">
-<div class="item-list">
-<div class="basket-options">
-<h1>Koszyk</h1>
-<button mat-button><h3><mat-icon>favorite_border_outline</mat-icon>Zapisz koszyk</h3></button>
-<button mat-button (click)="clearShoppingCart()"><h3><mat-icon>delete_outline</mat-icon>Wyczyść koszyk</h3></button>
+<div class="basket" >
+  <div class="item-list">
+    <div class="basket-options">
+      <h1>Koszyk</h1>
+      <button mat-button>
+        <h3><mat-icon>favorite_border_outline</mat-icon>Zapisz koszyk</h3>
+      </button>
+      <button mat-button (click)="clearShoppingCart()">
+        <h3><mat-icon>delete_outline</mat-icon>Wyczyść koszyk</h3>
+      </button>
+    </div>
+    <h2 *ngIf="!cart.shoppingCartItems">Koszyk jest pusty</h2>
+    <app-basket-item
+      *ngFor="let item of cart.shoppingCartItems"
+      [id]="item.id"
+      [photo]="item.product.productPhoto"
+      [price]="item.product.price"
+      [quantity]="item.quantity"
+      [name]="item.product.name"
+    ></app-basket-item>
+  </div>
+  <mat-card class="sum-info">
+    <h1>Łączna kwota</h1>
+    <div></div>
+    <h3>{{ sum }} zł</h3>
+    <button
+      *ngIf="cart.shoppingCartItems.length == 0"
+      mat-raised-button
+      color="primary"
+      disabled
+    >
+      Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <button
+      *ngIf="cart.shoppingCartItems.length > 0"
+      mat-raised-button
+      color="primary"
+      routerLink="/zamówienie"
+    >
+      Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </mat-card>
 </div>
-<h2 *ngIf="!cart.shoppingCartItems">Koszyk jest pusty</h2>
-<app-basket-item *ngFor="let item of cart.shoppingCartItems" [id]="item.id" [photo]="item.product.productPhoto "[price]="item.product.price" [quantity]="item.quantity" [name]="item.product.name"></app-basket-item>
-</div>
-<mat-card class="sum-info">
-<h1>Łączna kwota</h1>
-<div></div>
-<h3>{{sum}} zł</h3>
-<button *ngIf="cart.shoppingCartItems.length==0" mat-raised-button color="primary" disabled>Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon></button>
-<button *ngIf="cart.shoppingCartItems.length>0" mat-raised-button color="primary" routerLink="/zamówienie">Przejdź do dostawy<mat-icon>keyboard_arrow_right</mat-icon></button>
-</mat-card>
 
-</div>
+
+<h1>Aby dodać produkty do koszyka</h1>
+<br>
+<button mat-button>Zaloguj się!</button>

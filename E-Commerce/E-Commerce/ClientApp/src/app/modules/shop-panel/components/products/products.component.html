@@ -1,17 +1,27 @@
 <div class="content">
-<mat-card class="categories">
+  <mat-card class="categories">
     <div *ngFor="let category of categories">
-        <button (click)="changeProductsByCategory(category)"mat-button>{{category.name}}</button>
-        <div *ngIf="category.subCategories.length>1">
-        <button class="subcategory" (click)="changeProductsBySubCategory(subCategory)" *ngFor="let subCategory of category.subCategories" mat-button>{{subCategory.name}}</button>
-        </div>
+      <button (click)="changeProductsByCategory(category)" mat-button>
+        {{ category.name }}
+      </button>
+      <div *ngIf="category.subCategories.length > 1">
+        <button
+          class="subcategory"
+          (click)="changeProductsBySubCategory(subCategory)"
+          *ngFor="let subCategory of category.subCategories"
+          mat-button
+        >
+          {{ subCategory.name }}
+        </button>
+      </div>
     </div>
-    
-    
-</mat-card>
-<div class="product-list" *ngIf="products">
-<app-product-item *ngFor="let product of products" [product]="product">
-
-</app-product-item>
-</div>
+  </mat-card>
+  <div class="product-list" *ngIf="products">
+    <app-product-item
+      class="product"
+      *ngFor="let product of products"
+      [product]="product"
+    >
+    </app-product-item>
+  </div>
 </div>

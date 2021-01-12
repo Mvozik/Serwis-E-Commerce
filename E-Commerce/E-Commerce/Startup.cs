@@ -33,6 +33,7 @@ using Microsoft.AspNetCore.Http;
 using E_Commerce.Shared.Entities;
 using E_Commerce.AdminModule.Services.IServices;
 using E_Commerce.AdminModule.Services;
+using E_Commerce.AdminModule.Services.IService;
 
 namespace E_Commerce
 {

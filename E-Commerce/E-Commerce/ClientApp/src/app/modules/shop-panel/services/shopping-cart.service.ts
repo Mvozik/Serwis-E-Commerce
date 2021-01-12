@@ -7,36 +7,31 @@ import { ChagneQuantityModel } from '../models/change-quantity.model';
 import { ShoppingCartModel } from '../models/Shopping-cart.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingCartService {
+  constructor(private httpClient: HttpClient) {}
+  private url = baseUrl + 'ShoppingCart';
 
-  constructor(private httpClient:HttpClient) { }
-  private url = baseUrl+"ShoppingCart";
-  
-  activeShoppingCard():Observable<ShoppingCartModel>
-  {
-      return this.httpClient.get<ShoppingCartModel>(this.url+"/active");
+  activeShoppingCard(): Observable<ShoppingCartModel> {
+    return this.httpClient.get<ShoppingCartModel>(this.url + '/active');
   }
 
-  deleteCartItem(id:number):Observable<any>
-  {
-      return this.httpClient.delete(this.url+"/shoppingcartitem?id="+id);
+  deleteCartItem(id: number): Observable<any> {
+    return this.httpClient.delete(this.url + '/shoppingcartitem?id=' + id);
   }
 
-  addProductToCart(model:AddProductToCartModel):Observable<any>
-  {
-      return this.httpClient.post(this.url+"/add-to-shopping-card",model);
+  addProductToCart(model: AddProductToCartModel): Observable<any> {
+    return this.httpClient.post(this.url + '/add-to-shopping-card', model);
   }
 
-  changeQuantity(model:ChagneQuantityModel)
-  {
-      return this.httpClient.post(this.url+"/change-quantity",model);
+  changeQuantity(model: ChagneQuantityModel) {
+    return this.httpClient.post(this.url + '/change-quantity', model);
   }
 
-  clearShoppingCart(id:number)
-  {
-      return this.httpClient.delete(this.url+"/clear-shopping-cart?shoppingCartId="+id);
+  clearShoppingCart(id: number) {
+    return this.httpClient.delete(
+      this.url + '/clear-shopping-cart?shoppingCartId=' + id
+    );
   }
-
 }

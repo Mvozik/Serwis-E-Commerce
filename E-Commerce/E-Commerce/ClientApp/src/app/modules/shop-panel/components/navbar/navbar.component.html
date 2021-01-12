@@ -1,15 +1,31 @@
 <mat-toolbar>
   <mat-toolbar-row class="navigation">
-      <button mat-button routerLink=""><img class="logo-image" src="../../../../../assets/photos/7cbf82dd32ab7e88.svg"></button>
-      <div></div>
-      <button mat-button routerLink="koszyk"><mat-icon >shopping_basket</mat-icon><span>Koszyk</span></button>
-      <button mat-button (click)="click()"><mat-icon>{{maticon}}</mat-icon><span>{{text}}</span></button>
-      
-    </mat-toolbar-row>
+    <button mat-button routerLink="">
+      <img
+        class="logo-image"
+        src="../../../../../assets/photos/7cbf82dd32ab7e88.svg"
+      />
+    </button>
+    <div></div>
+    <button mat-button routerLink="koszyk">
+      <mat-icon>shopping_basket</mat-icon><span>Koszyk</span>
+    </button>
+    <button mat-button (click)="click()">
+      <mat-icon>{{ maticon }}</mat-icon
+      ><span>{{ text }}</span>
+    </button>
+  </mat-toolbar-row>
   <mat-toolbar-row class="category-container">
     <div class="categories">
-    <button *ngFor="let name of names" [routerLink]="['produkty',name.id]" mat-button><mat-icon>{{name.matIcon}}</mat-icon><span>{{name.value}}</span></button>
-    
-  </div>
+      
+      <button
+        *ngFor="let section of sections"
+        [routerLink]="['produkty', section.id]"
+        mat-button>
+        <mat-icon>{{ section.icon }}</mat-icon
+        ><span>{{ section.name }}</span>
+      </button>
+
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

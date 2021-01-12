@@ -1,5 +1,4 @@
-export interface PostOrderModel
-{
-    shippingCompany:string,
-    shippingPrice:number,
+export interface PostOrderModel {
+  shippingCompany: string;
+  shippingPrice: number;
 }

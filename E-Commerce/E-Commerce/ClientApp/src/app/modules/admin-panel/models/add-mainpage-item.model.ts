@@ -1,5 +1,4 @@
-export interface AddMainPageItemModel
-{
-    productId:number;
-    order:number;
+export interface AddMainPageItemModel {
+  productId: number;
+  order: number;
 }

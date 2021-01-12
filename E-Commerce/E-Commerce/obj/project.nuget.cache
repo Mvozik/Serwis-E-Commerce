@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LLPkUGRc14XADXPhDLbE8vZ6KtOrYrOu5EoPuS6FcROTzbkApS7VKXRIf9WihGPX5WG6mW3zcfsTIRe+Xm/YUQ==",
+  "dgSpecHash": "qOgdSFVVIVXB318rFIfe+VWbQVbq6+sJclLhcPAQijSZbff6BPWXF9JEu/ea7Rt2uHJWYyqvUu4SdHGYaFqdvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Piotr\\Documents\\Serwis-E-Commerce\\E-Commerce\\E-Commerce\\E-Commerce.csproj",
   "expectedPackageFiles": [
@@ -192,7 +192,9 @@
     "C:\\Users\\Piotr\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Piotr\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Piotr\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Piotr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\Piotr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
   ],
   "logs": []
 }

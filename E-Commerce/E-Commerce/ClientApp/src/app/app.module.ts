@@ -7,17 +7,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { AdminPanelModule } from "./modules/admin-panel/admin-panel.module";
-import { ShopPanelModule } from "./modules/shop-panel/shop-panel.module";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AdminPanelModule } from './modules/admin-panel/admin-panel.module';
+import { ShopPanelModule } from './modules/shop-panel/shop-panel.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {  MatInputModule  } from '@angular/material/input';
-import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from "./services/auth.service";
-import { TokenInterceptor } from "./auth/token.interceptor";
+import { AuthService } from './services/auth.service';
+import { TokenInterceptor } from './auth/token.interceptor';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './reducers/login-state.reducer';
@@ -49,14 +49,16 @@ import { SharedModule } from './modules/shared/shared.module';
     MatButtonModule,
     MatCarouselModule.forRoot(),
     StoreModule.forRoot({
-      loginState : loginReducer,
-      shoppingCart : shoppingCartReducer,
+      loginState: loginReducer,
+      shoppingCart: shoppingCartReducer,
     }),
-    SharedModule
-    
+    SharedModule,
   ],
-  providers: [AuthService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
-  exports:[]
+  exports: [],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminPanelRoutingModule } from "./admin-panel-routing.module";
+import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { AdminLoginFormComponent } from './components/admin-login-form/admin-login-form.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminNavBarComponent } from './components/admin-nav-bar/admin-nav-bar.component';
@@ -15,16 +15,41 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { AdvertCardComponent } from './components/advert-card/advert-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { MainPageOptionsComponent } from './components/main-page-options/main-page-options.component'
+import { MainPageOptionsComponent } from './components/main-page-options/main-page-options.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderListItemComponent } from './components/order-list-item/order-list-item.component';
+import { ActiveOrderListComponent } from './components/active-order-list/active-order-list.component';
+import { DropMenuIconComponent } from './components/drop-menu-icon/drop-menu-icon.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { RealizedOrderListComponent } from './components/realized-order-list/realized-order-list.component';
 
 @NgModule({
-  declarations: [AdminLoginFormComponent, AdminDashboardComponent, AdminNavBarComponent, AddAdvertFormComponent, ProductPanelComponent, OrdersPanelComponent, UsersPanelComponent, ProductListComponent, AdvertCardComponent, ProductDetailsComponent, CategoriesComponent, MainPageOptionsComponent],
+  declarations: [
+    AdminLoginFormComponent,
+    AdminDashboardComponent,
+    AdminNavBarComponent,
+    AddAdvertFormComponent,
+    ProductPanelComponent,
+    OrdersPanelComponent,
+    UsersPanelComponent,
+    ProductListComponent,
+    AdvertCardComponent,
+    ProductDetailsComponent,
+    CategoriesComponent,
+    MainPageOptionsComponent,
+    OrderListComponent,
+    OrderListItemComponent,
+    ActiveOrderListComponent,
+    DropMenuIconComponent,
+    RealizedOrderListComponent,
+  ],
   imports: [
     CommonModule,
     AdminPanelRoutingModule,
     SharedModule,
     NgxMatFileInputModule,
-    MatSidenavModule
-  ]
+    MatSidenavModule,
+    MatMenuModule,
+  ],
 })
-export class AdminPanelModule { }
+export class AdminPanelModule {}

@@ -70,6 +70,9 @@ namespace E_Commerce.Migrations
                     b.Property<bool>("Company")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsPayed")
                         .HasColumnType("bit");
 
@@ -78,6 +81,15 @@ namespace E_Commerce.Migrations
 
                     b.Property<bool>("IsShipped")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("PayTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RealizationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShippedTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ShippingFormat")
                         .HasColumnType("nvarchar(max)");
@@ -177,6 +189,9 @@ namespace E_Commerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

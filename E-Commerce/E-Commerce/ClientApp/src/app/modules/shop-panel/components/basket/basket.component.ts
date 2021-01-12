@@ -5,54 +5,40 @@ import { AppState } from '../../../../app.state';
 import { ShoppingCartItemModel } from '../../models/Shopping-cart-item.model';
 import { ShoppingCartModel } from '../../models/Shopping-cart.model';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
-import * as ShoppingCartActions from '../../../../actions/shoppingcart.actions' 
+import * as ShoppingCartActions from '../../../../actions/shoppingcart.actions';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
-  styleUrls: ['./basket.component.scss']
+  styleUrls: ['./basket.component.scss'],
 })
 export class BasketComponent implements OnInit {
+  shoppingCard: Observable<ShoppingCartModel>;
+  sum: number = 0;
+  cart: ShoppingCartModel;
 
-  shoppingCard:Observable<ShoppingCartModel>;
-  sum:number= 0;
-  cart : ShoppingCartModel;
-
-  constructor(private store:Store<AppState>,private shoppingCartService:ShoppingCartService)
-  { 
-
-    this.shoppingCard = this.store.select("shoppingCart");
-    this.shoppingCard.subscribe(response=>{
-        this.cart=response;
-        this.sum=0;
-        this.cart.shoppingCartItems.forEach(x=>
-        {
-          this.sum += x.product.price * x.quantity;
-        }
-      )
-    }
-    );
+  constructor(
+    private store: Store<AppState>,
+    private shoppingCartService: ShoppingCartService
+  ) {
+    this.shoppingCard = this.store.select('shoppingCart');
+    this.shoppingCard.subscribe((response) => {
+      this.cart = response;
+      this.sum = 0;
+      this.cart.shoppingCartItems.forEach((x) => {
+        this.sum += x.product.price * x.quantity;
+      });
+    });
   }
 
-  ngOnInit(): void {
-    
-  }
-  clearShoppingCart()
-  {
+  ngOnInit(): void {}
+  clearShoppingCart() {
     this.shoppingCartService.clearShoppingCart(this.cart.id).subscribe();
     this.store.dispatch(new ShoppingCartActions.ClearShoppingCart());
-    
   }
 
-  onClick()
-  {
-    
-  }
+  onClick() {}
 
-  updateQuantity(event:ShoppingCartItemModel)
-  {
-    
+  updateQuantity(event: ShoppingCartItemModel) {
     this.store.dispatch(new ShoppingCartActions.ChangeQuantity(event));
-
   }
-
 }

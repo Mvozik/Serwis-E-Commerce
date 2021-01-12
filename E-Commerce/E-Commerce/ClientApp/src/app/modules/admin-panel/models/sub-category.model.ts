@@ -1,6 +1,5 @@
-export interface SubCategoryModel
-{
-    id:number;
-    name:string;
-    categoryId:number;
+export interface SubCategoryModel {
+  id: number;
+  name: string;
+  categoryId: number;
 }

@@ -1,5 +1,4 @@
-export interface AddSubCategoryModel
-{
-    name:string;
-    categoryId:number;
+export interface AddSubCategoryModel {
+  name: string;
+  categoryId: number;
 }

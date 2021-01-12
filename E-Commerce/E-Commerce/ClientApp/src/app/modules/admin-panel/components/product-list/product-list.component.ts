@@ -12,10 +12,11 @@ export class ProductListComponent implements OnInit {
   constructor(private adminService:AdminPanelService) { }
 
   ngOnInit(): void {
-    this.adminService.getAllProducts().subscribe(response=>this.products=response);
+    this.adminService.getAllProducts().subscribe(response =>   this.products = response);
   }
 
-  
+
 
   products:ProductModel[];
+  product: ProductModel;
 }

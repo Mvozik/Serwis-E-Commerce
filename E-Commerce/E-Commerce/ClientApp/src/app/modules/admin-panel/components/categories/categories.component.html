@@ -1,61 +1,71 @@
 <mat-card>
-    <mat-card-content>
-      <form [formGroup]="sectionForm" (ngSubmit)="addSection()">
-        <h2>Dodaj Sekcję</h2>
-        <mat-form-field class="full-width-input">
-            
-          <input matInput type="text" placeholder="name" formControlName="name" required>
-          <mat-error>
-            Please provide a valid name
-          </mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Dodaj</button>
-      </form>
-    </mat-card-content>
+  <mat-card-content>
+    <form [formGroup]="sectionForm" (ngSubmit)="addSection()">
+      <h2>Dodaj Sekcję</h2>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="text"
+          placeholder="name"
+          formControlName="name"
+          required
+        />
+        <mat-error> Please provide a valid name </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Dodaj</button>
+    </form>
+  </mat-card-content>
 </mat-card>
 <mat-card>
-    <mat-card-content>
-      <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
-        <h2>Dodaj Kategorię</h2>
-        <mat-form-field class="full-width-input">
-          <input matInput type="text" placeholder="name" formControlName="name" required>
-          <mat-error>
-            Please provide a valid name
-          </mat-error>
-        </mat-form-field>
-        
-        <mat-form-field>
+  <mat-card-content>
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+      <h2>Dodaj Kategorię</h2>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="text"
+          placeholder="name"
+          formControlName="name"
+          required
+        />
+        <mat-error> Please provide a valid name </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
         <mat-label>Wybierz Sekcję</mat-label>
         <mat-select (selectionChange)="changeSectionSelect($event)">
-            <mat-option *ngFor="let section of sections"  [value]="section.id">
-              {{section.value}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Dodaj</button>
-
-      </form>
-    </mat-card-content>
+          <mat-option *ngFor="let section of sections" [value]="section.id">
+            {{ section.value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Dodaj</button>
+    </form>
+  </mat-card-content>
 </mat-card>
 <mat-card>
-    <mat-card-content>
-      <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
-        <h2>Dodaj Podkategorię</h2>
-        <mat-form-field class="full-width-input">
-          <input matInput type="text" placeholder="name" formControlName="name" required>
-          <mat-error>
-            Please provide a valid name
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field *ngIf="categories">
-            <mat-label>Wybierz Kategorię</mat-label>
-            <mat-select (selectionChange)="changeCategorySelect($event)">
-                <mat-option *ngFor="let section of categories" [value]="section.id">
-                  {{section.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-        <button mat-raised-button color="primary">Dodaj</button>
-      </form>
-    </mat-card-content>
+  <mat-card-content>
+    <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
+      <h2>Dodaj Podkategorię</h2>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="text"
+          placeholder="name"
+          formControlName="name"
+          required
+        />
+        <mat-error> Please provide a valid name </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="categories">
+        <mat-label>Wybierz Kategorię</mat-label>
+        <mat-select (selectionChange)="changeCategorySelect($event)">
+          <mat-option *ngFor="let section of categories" [value]="section.id">
+            {{ section.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Dodaj</button>
+    </form>
+  </mat-card-content>
 </mat-card>

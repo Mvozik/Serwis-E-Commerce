@@ -1,5 +1,4 @@
-export interface AddCategoryModel
-{
-    name:string;
-    sectionId:number;
+export interface AddCategoryModel {
+  name: string;
+  sectionId: number;
 }

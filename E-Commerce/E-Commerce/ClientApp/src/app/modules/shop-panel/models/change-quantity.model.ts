@@ -1,5 +1,4 @@
-export interface ChagneQuantityModel
-{
-    shoppingCartItemId:number;
-    quantity:number;
+export interface ChagneQuantityModel {
+  shoppingCartItemId: number;
+  quantity: number;
 }

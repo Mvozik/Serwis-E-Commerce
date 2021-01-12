@@ -1,81 +1,120 @@
-<div class="content" >
- <div class="preview">
-        <app-advert-card 
-        [name]="productForm.value.name"
-        [price]="productForm.value.price" 
-        [photoUrl]="photo">
-      </app-advert-card>
-      </div>
-      
-<mat-card>
+<div class="content">
+  <div class="preview">
+    <app-advert-card
+      [name]="productForm.value.name"
+      [price]="productForm.value.price"
+      [photoUrl]="photo"
+    >
+    </app-advert-card>
+  </div>
+
+  <mat-card>
     <mat-card-content>
       <form [formGroup]="productForm" (ngSubmit)="submit()">
         <h2>Dodaj Produkt</h2>
         <mat-form-field class="full-width-input">
-          <input matInput type="text" placeholder="name" formControlName="name" required>
-          <mat-error>
-            Please provide a valid name
-          </mat-error>
+          <input
+            matInput
+            type="text"
+            placeholder="name"
+            formControlName="name"
+            required
+          />
+          <mat-error> Please provide a valid name </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
-          <input matInput type="text" placeholder="price" formControlName="price" required>
-          <mat-error>
-            Please provide a valid price
-          </mat-error>
+          <input
+            matInput
+            type="text"
+            placeholder="price"
+            formControlName="price"
+            required
+          />
+          <mat-error> Please provide a valid price </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
-            <input matInput type="text" placeholder="quantity" formControlName="quantity" required>
-            <mat-error>
-              Please provide a valid price
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput type="text" placeholder="description" formControlName="description" required>
-            <mat-error>
-              Please provide a valid price
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput type="text" placeholder="specification" formControlName="specification" required>
-            <mat-error>
-              Please provide a valid price
-            </mat-error>
-          </mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="quantity"
+            formControlName="quantity"
+            required
+          />
+          <mat-error> Please provide a valid price </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            type="text"
+            placeholder="description"
+            formControlName="description"
+            required
+          />
+          <mat-error> Please provide a valid price </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            type="text"
+            placeholder="specification"
+            formControlName="specification"
+            required
+          />
+          <mat-error> Please provide a valid price </mat-error>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Wybierz Sekcję*</mat-label>
-            <mat-select (selectionChange)="changeSection($event)">
-                <mat-option *ngFor="let section of sections"  [value]="section.id">
-                  {{section.name}}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Wybierz Sekcję*</mat-label>
+          <mat-select (selectionChange)="changeSection($event)">
+            <mat-option *ngFor="let section of sections" [value]="section.id">
+              {{ section.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <mat-form-field *ngIf="selectedSection">
-            <mat-label>Wybierz Kategorię*</mat-label>
-            <mat-select (selectionChange)="changeCategory($event)">
-                <mat-option *ngFor="let category of selectedSection.categories"  [value]="category.id">
-                  {{category.name}}
-                </mat-option>
-              </mat-select>
-          </mat-form-field >
-          <mat-form-field required *ngIf="selectedCategory">
-            <mat-label>Wybierz Podkategorię*</mat-label>
-            <mat-select (selectionChange)="changeSubCategory($event)">
-                <mat-option *ngFor="let subCategory of selectedCategory.subCategories"  [value]="subCategory.id">
-                  {{subCategory.name}}
-                </mat-option>
-              </mat-select>
-            
-            
-          </mat-form-field>
-          <mat-form-field> 
-            <ngx-mat-file-input required (change)='changephoto()' formControlName="productPhoto" >
-            </ngx-mat-file-input>
-         </mat-form-field>
+        <mat-form-field *ngIf="selectedSection">
+          <mat-label>Wybierz Kategorię*</mat-label>
+          <mat-select (selectionChange)="changeCategory($event)">
+            <mat-option
+              *ngFor="let category of selectedSection.categories"
+              [value]="category.id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field required *ngIf="selectedCategory">
+          <mat-label>Wybierz Podkategorię*</mat-label>
+          <mat-select (selectionChange)="changeSubCategory($event)">
+            <mat-option
+              *ngFor="let subCategory of selectedCategory.subCategories"
+              [value]="subCategory.id"
+            >
+              {{ subCategory.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <ngx-mat-file-input
+            required
+            (change)="changephoto()"
+            formControlName="productPhoto"
+            placeholder="Wybierz zdjęcie"
+          >
+          </ngx-mat-file-input>
+        </mat-form-field>
 
-        <button *ngIf='!productForm.valid' disabled mat-raised-button color="primary">Dodaj</button>
-        <button *ngIf='productForm.valid' mat-raised-button color="primary">Dodaj</button>
+        <button
+          *ngIf="!productForm.valid"
+          disabled
+          mat-raised-button
+          color="primary"
+        >
+          Dodaj
+        </button>
+        <button *ngIf="productForm.valid" mat-raised-button color="primary">
+          Dodaj
+        </button>
       </form>
     </mat-card-content>
   </mat-card>

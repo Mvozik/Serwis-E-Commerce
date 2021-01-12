@@ -8,50 +8,41 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { ProductsComponent } from './components/products/products.component';
 import { OrderComponent } from './components/order/order.component';
 
-
-
-
 const routes: Routes = [
-   
-    {
-        path:"",
-        component:ShopBaseComponent,
-        children:
-        [
-            {
-                path:"",
-                component:MainpageComponent
-            },
-            {
-                path:"koszyk",
-                component:BasketComponent
-            },
-            {
-                path:"rejestracja",
-                component:RegisterFormComponent
-            },
-            {
-                path:"logowanie",
-                component:LoginPageComponent
-            },
-            {
-                path:"produkty/:id",
-                component:ProductsComponent
-            },
-            {
-                path:"zamówienie",
-                component:OrderComponent
-            },
-        ]
-    },
-    
+  {
+    path: '',
+    component: ShopBaseComponent,
+    children: [
+      {
+        path: '',
+        component: MainpageComponent,
+      },
+      {
+        path: 'koszyk',
+        component: BasketComponent,
+      },
+      {
+        path: 'rejestracja',
+        component: RegisterFormComponent,
+      },
+      {
+        path: 'logowanie',
+        component: LoginPageComponent,
+      },
+      {
+        path: 'produkty/:id',
+        component: ProductsComponent,
+      },
+      {
+        path: 'zamówienie',
+        component: OrderComponent,
+      },
+    ],
+  },
 ];
 
-
-
 @NgModule({
-    exports: [RouterModule],
-    imports: [RouterModule.forChild(routes)]
+  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
 })
-
-export class ShopPanelRoutingModule { }
+export class ShopPanelRoutingModule {}

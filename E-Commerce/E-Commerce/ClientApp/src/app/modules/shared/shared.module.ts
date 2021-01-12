@@ -11,12 +11,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 
-
 @NgModule({
-  declarations: [
-    
-  ProductItemComponent],
-  imports:[
+  declarations: [ProductItemComponent],
+  imports: [
     MatFormFieldModule,
     MatToolbarModule,
     MatCardModule,
@@ -28,7 +25,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     ReactiveFormsModule,
     MatInputModule,
   ],
-  exports:[
+  exports: [
     CommonModule,
     MatFormFieldModule,
     MatToolbarModule,
@@ -40,7 +37,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    ProductItemComponent
-  ]
+    ProductItemComponent,
+  ],
 })
 export class SharedModule {}

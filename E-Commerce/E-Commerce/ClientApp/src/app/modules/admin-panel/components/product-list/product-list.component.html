@@ -1,7 +1,9 @@
 <div class="product-list">
-    <app-advert-card *ngFor="let product of products"
+  <app-advert-card
+    *ngFor="let product of products"
     [name]="product.name"
-    [price]="product.price" 
-    [photoUrl]="'data:image/jpeg;base64,'+product.productPhoto"
-    [routerLink]="['edytujprodukt',product.id]"></app-advert-card>
+    [price]="product.price"
+    [photoUrl]="'data:image/jpeg;base64,' + product.productPhoto"
+    [routerLink]="['../edytujprodukt', product.id]"
+  ></app-advert-card>
 </div>

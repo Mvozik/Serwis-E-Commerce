@@ -1,0 +1,12 @@
+<div class="list">
+  <div class="header">
+    <p>Id Zamówienia</p>
+    <p>Status Płatności</p>
+    <p>Status Wysyłki</p>
+    <p>Status Zrealizowania</p>
+  </div>
+  <app-order-list-item
+    *ngFor="let order of orders"
+    [order]="order"
+  ></app-order-list-item>
+</div>

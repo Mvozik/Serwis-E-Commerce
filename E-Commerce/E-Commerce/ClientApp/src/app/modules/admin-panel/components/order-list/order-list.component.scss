@@ -1,0 +1,14 @@
+.list {
+  width: 70%;
+  margin: auto;
+  app-order-list-item {
+    margin: 5px;
+  }
+  .header {
+    display: grid;
+    width: 100%;
+    height: 50px;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    place-items: center;
+  }
+}

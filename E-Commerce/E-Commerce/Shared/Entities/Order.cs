@@ -23,6 +23,10 @@ namespace E_Commerce.Shared.Entities
         public bool IsPayed { get; set; }
         public bool IsShipped { get; set; }
         public bool IsRealized { get; set; }
-        
+        public DateTime CreationDate { get; set; }
+        public DateTime PayTime { get; set; }
+        public DateTime ShippedTime { get; set; }
+        public DateTime RealizationTime { get; set; }
+
     }
 }

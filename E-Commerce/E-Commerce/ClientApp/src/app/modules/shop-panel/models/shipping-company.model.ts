@@ -1,6 +1,5 @@
-export interface ShippingCompanyModel
-{
-    id:number;
-    companyName:string;
-    price:number;
+export interface ShippingCompanyModel {
+  id: number;
+  companyName: string;
+  price: number;
 }

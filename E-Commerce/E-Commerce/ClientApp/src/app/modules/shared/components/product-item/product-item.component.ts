@@ -12,48 +12,47 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss']
+  styleUrls: ['./product-item.component.scss'],
 })
 export class ProductItemComponent implements OnInit {
-  @Input() product:ProductModel;
-  @Input() disabled:boolean=false;
-  shoppingCart:Observable<ShoppingCartModel>;
-  shoppingCartId:any;
-  constructor(private shoppingService:ShoppingCartService,private store:Store<AppState>,private _snackBar: MatSnackBar ) { }
+  @Input() product: ProductModel;
+  @Input() disabled: boolean = false;
+  shoppingCart: Observable<ShoppingCartModel>;
+  shoppingCartId: any;
+  constructor(
+    private shoppingService: ShoppingCartService,
+    private store: Store<AppState>,
+    private _snackBar: MatSnackBar
+  ) {}
 
-  
   ngOnInit(): void {
-    this.product.productPhoto="data:image/jpeg;base64,"+this.product.productPhoto;
-    if(this.product.productPhoto=="data:image/jpeg;base64,null")
-    {
-      this.product.productPhoto = "../../../../../assets/photos/default.svg";
+    this.product.productPhoto =
+      'data:image/jpeg;base64,' + this.product.productPhoto;
+    if (this.product.productPhoto == 'data:image/jpeg;base64,null') {
+      this.product.productPhoto = '../../../../../assets/photos/default.svg';
     }
-    this.shoppingCart = this.store.select("shoppingCart");
-    this.shoppingCart.subscribe(resp=>this.shoppingCartId=resp.id);
+    this.shoppingCart = this.store.select('shoppingCart');
+    this.shoppingCart.subscribe((resp) => (this.shoppingCartId = resp.id));
   }
 
-  addProduct()
-  {
-      let model : AddProductToCartModel = {
-        productId : this.product.id,
-        shoppingCartId:this.shoppingCartId
-      }
-      
-      this.shoppingService.addProductToCart(model).subscribe(
-      (response:ShoppingCartItemModel)=>{
-        if(response==null)
-        {
-          this._snackBar.open("Już dodałeś ten produkt do koszyka!","", {
+  addProduct() {
+    let model: AddProductToCartModel = {
+      productId: this.product.id,
+      shoppingCartId: this.shoppingCartId,
+    };
+
+    this.shoppingService
+      .addProductToCart(model)
+      .subscribe((response: ShoppingCartItemModel) => {
+        if (response == null) {
+          this._snackBar.open('Już dodałeś ten produkt do koszyka!', '', {
             duration: 200,
           });
+        } else {
+          this.store.dispatch(
+            new ShoppingCartActions.AddShoppingCartItem(response)
+          );
         }
-        else
-        {
-          this.store.dispatch(new ShoppingCartActions.AddShoppingCartItem(response));
-        }
-        
       });
-      
-
   }
 }

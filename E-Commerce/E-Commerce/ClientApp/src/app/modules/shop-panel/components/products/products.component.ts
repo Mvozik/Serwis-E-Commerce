@@ -11,33 +11,37 @@ import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute , private productService:ProductService,private categoryService:CategoryService ) { 
-    
-    
-    const id: Observable<string> = this.route.params.pipe(map(p => p.id));
-    id.subscribe(response=>{
-      this.productService.getProductsBySectionId(parseInt(response)).subscribe(response=> this.products=response);
-      this.categoryService.getCategoriesBySectionId(parseInt(response)).subscribe(response=>this.categories=response);
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private categoryService: CategoryService
+  ) {
+    const id: Observable<string> = this.route.params.pipe(map((p) => p.id));
+    id.subscribe((response) => {
+      this.productService
+        .getProductsBySectionId(parseInt(response))
+        .subscribe((response) => (this.products = response));
+      this.categoryService
+        .getCategoriesBySectionId(parseInt(response))
+        .subscribe((response) => (this.categories = response));
     });
-    
   }
-  products:ProductModel[];
-  categories:CategoryModel[];
-  ngOnInit(): void {
-    
+  products: ProductModel[];
+  categories: CategoryModel[];
+  ngOnInit(): void {}
+
+  changeProductsByCategory(event: CategoryModel) {
+    this.productService
+      .getProductsByCategoryId(event.id)
+      .subscribe((response) => (this.products = response));
   }
 
-  changeProductsByCategory(event:CategoryModel)
-  {
-    this.productService.getProductsByCategoryId(event.id).subscribe(response=>this.products=response);
-  }
-
-  changeProductsBySubCategory(event:SubCategoryModel)
-  {
-    this.productService.getProductsBySubCategoryId(event.id).subscribe(response=>this.products=response);
+  changeProductsBySubCategory(event: SubCategoryModel) {
+    this.productService
+      .getProductsBySubCategoryId(event.id)
+      .subscribe((response) => (this.products = response));
   }
 }

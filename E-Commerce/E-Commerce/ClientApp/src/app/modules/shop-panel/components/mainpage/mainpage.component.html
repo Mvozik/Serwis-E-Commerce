@@ -1,66 +1,45 @@
 <mat-card>
-<h2>Kategorie</h2>
-<button routerLink>Wszystko</button>
-<button routerLink="/admin">admin-panel</button>
+  <h2>Kategorie</h2>
+  <button routerLink>Wszystko</button>
+  <button routerLink="/admin">admin-panel</button>
 </mat-card>
 
 <div class="carousel">
-<mat-carousel
-  timings="250ms ease-in"
-  [autoplay]="true"
-  interval="5000"
-  color="accent"
-  maxWidth=auto 
-  proportion="21"
-  slides="3"
-  [loop]="true"
-  [hideArrows]="false"
-  [hideIndicators]="false"
-  [useKeyboard]="true"
-  [useMouseWheel]="false"
-  orientation="ltr"
->
-  <mat-carousel-slide
-    #matCarouselSlide
-    *ngFor="let slide of slides; let i = index"
-    [image]="slide.image"
-    overlayColor="#00000000"
-    [hideOverlay]="false"
-  ></mat-carousel-slide>
-</mat-carousel>
+  <mat-carousel
+    timings="250ms ease-in"
+    [autoplay]="true"
+    interval="5000"
+    color="accent"
+    maxWidth="auto"
+    proportion="21"
+    slides="3"
+    [loop]="true"
+    [hideArrows]="false"
+    [hideIndicators]="false"
+    [useKeyboard]="true"
+    [useMouseWheel]="false"
+    orientation="ltr"
+  >
+    <mat-carousel-slide
+      #matCarouselSlide
+      *ngFor="let slide of slides; let i = index"
+      [image]="slide.image"
+      overlayColor="#00000000"
+      [hideOverlay]="false"
+    ></mat-carousel-slide>
+  </mat-carousel>
 </div>
-
 
 <h1 class="margined">Najczęściej kupowane</h1>
 
-<div class="adverts" *ngIf="finished==true">
-
-<app-product-item class="sale"
-  [product]="products[0]">
-</app-product-item>
-<app-product-item
-[product]="products[1]">
-</app-product-item>
-<app-product-item
-[product]="products[2]">
-</app-product-item>
-<app-product-item 
-[product]="products[3]">
-</app-product-item>
-<app-product-item
-[product]="products[4]">
-</app-product-item>
-<app-product-item
-[product]="products[5]">
-</app-product-item>
-<app-product-item
-[product]="products[6]">
-</app-product-item>
-<app-product-item class="advert8" 
-[product]="products[7]">
-</app-product-item>
-<app-product-item class="advert9" 
-[product]="products[8]">
-</app-product-item>
-
+<div class="adverts" *ngIf="finished == true">
+  <app-product-item class="sale" [product]="products[0]"> </app-product-item>
+  <app-product-item [product]="products[1]"> </app-product-item>
+  <app-product-item [product]="products[2]"> </app-product-item>
+  <app-product-item [product]="products[3]"> </app-product-item>
+  <app-product-item [product]="products[4]"> </app-product-item>
+  <app-product-item [product]="products[5]"> </app-product-item>
+  <app-product-item [product]="products[6]"> </app-product-item>
+  <app-product-item class="advert8" [product]="products[7]"> </app-product-item>
+  <app-product-item class="advert9" [product]="products[8]"> </app-product-item>
 </div>

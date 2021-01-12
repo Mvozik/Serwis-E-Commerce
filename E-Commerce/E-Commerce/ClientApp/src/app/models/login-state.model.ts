@@ -1,5 +1,4 @@
 export interface LoginStateModel {
-    name:string;
-    loginState:string;
-  }
-  
+  name: string;
+  loginState: string;
+}

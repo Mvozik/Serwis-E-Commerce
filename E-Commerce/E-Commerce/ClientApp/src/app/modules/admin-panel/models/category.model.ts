@@ -1,9 +1,8 @@
-import { SubCategoryModel } from "./sub-category.model";
+import { SubCategoryModel } from './sub-category.model';
 
-export interface CategoryModel
-{
-    id:number;
-    name:string;
-    sectionId:number;
-    subCategories:SubCategoryModel[];
+export interface CategoryModel {
+  id: number;
+  name: string;
+  sectionId: number;
+  subCategories: SubCategoryModel[];
 }

@@ -1,0 +1,23 @@
+.flex-box {
+  height: 100%;
+  width: fit-content;
+  margin: 0 auto;
+  place-items: center;
+  display: flex;
+  div {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #c3c2c2;
+    margin: 1px;
+  }
+}
+.content {
+  height: 37px;
+  width: 37px;
+}
+.content:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #dbdbdb;
+}
