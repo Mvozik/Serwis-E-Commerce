@@ -1,19 +1,31 @@
-mat-card {
+.container {
   width: 182px;
   height: 252px;
   cursor: pointer;
+  border: solid 1px #ffffff;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  outline: none;
 }
 
-mat-card:hover {
-  transform: scale(1.02);
+.container:hover {
+  box-shadow: 0 0 2px #d6d6d6;
+  border: solid 1px #d6d6d6;
 }
+
 .advert-photo {
   grid-column: 1/4;
   grid-row: 1/3;
-  width: 156px;
-  height: 130px;
+  max-height: 130px;
+  max-width: 156px;
 }
+
 .content {
+  outline: none;
+
+  margin: 2px;
   width: 100%;
   height: 100%;
   display: grid;
@@ -21,6 +33,7 @@ mat-card:hover {
   grid-template-rows: auto auto auto auto;
   place-items: center;
 }
+
 .card-title {
   overflow-wrap: break-word;
   width: 170px;
@@ -28,10 +41,13 @@ mat-card:hover {
   grid-column: 1/4;
   grid-row: 3/4;
 }
+
 .add-to-cart {
-  grid-column: 3/4;
-  grid-row: 4/5;
+  position: relative;
+  top: -50px;
+  left: 136px;
 }
+
 .add-to-cart:hover {
   background-color: rgba(70, 255, 53, 0.746);
 }

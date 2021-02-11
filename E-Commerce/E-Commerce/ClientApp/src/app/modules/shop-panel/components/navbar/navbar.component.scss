@@ -1,13 +1,11 @@
 .navigation {
-  width: 90%;
+  width: 100%;
   margin: auto;
-  display: grid;
-  grid-template-columns: auto 55% auto auto;
+  display: flex;
 }
 .categories {
-  display: grid;
+  display: flex;
   width: fit-content;
-  grid-template-columns: auto auto auto auto auto auto auto auto;
   place-items: center;
   margin: auto;
   button {
@@ -27,4 +25,5 @@ mat-toolbar {
 .category-container {
   width: 100%;
   background-color: whitesmoke;
+  box-shadow: rgb(0 0 0 / 64%) 0px 2px 8px -5px;
 }

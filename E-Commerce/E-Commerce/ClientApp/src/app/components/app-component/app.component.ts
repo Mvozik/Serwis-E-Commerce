@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import { ShoppingCartService } from 'src/app/modules/shop-panel/services/shopping-cart.service';
 import { AuthService } from '../../services/auth.service';
+import * as ShoppingCartActions from '../../actions/shoppingcart.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +13,18 @@ import { AuthService } from '../../services/auth.service';
 export class AppComponent {
   title = 'E-Commerce';
 
-  constructor(private authService: AuthService) {}
-  private tokenExpired(token: string) {
-    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
-    return Math.floor(new Date().getTime() / 1000) >= expiry;
-  }
+  constructor(
+    private basketService: ShoppingCartService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit() {
     if (localStorage.getItem('JWT_TOKEN')) {
-      if (this.tokenExpired(localStorage.getItem('JWT_TOKEN'))) {
-        this.authService.refreshToken().subscribe();
-      } else {
-      }
+      this.basketService
+        .activeShoppingCard()
+        .subscribe((response) =>
+          this.store.dispatch(new ShoppingCartActions.SetShoppingCart(response))
+        );
     }
   }
 }

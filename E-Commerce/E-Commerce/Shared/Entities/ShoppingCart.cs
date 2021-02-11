@@ -11,5 +11,6 @@ namespace E_Commerce.Shared.Entities
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
         public bool Active { get; set; }
         public bool Realized { get; set; }
+        public string Description { get; set; }
     }
 }

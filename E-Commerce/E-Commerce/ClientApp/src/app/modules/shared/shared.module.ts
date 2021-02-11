@@ -10,10 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ProductItemComponent } from './components/product-item/product-item.component';
-
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [ProductItemComponent],
   imports: [
+    CommonModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatCardModule,
@@ -24,6 +25,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    RouterModule,
   ],
   exports: [
     CommonModule,

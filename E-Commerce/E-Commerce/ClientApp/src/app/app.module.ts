@@ -23,7 +23,8 @@ import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './reducers/login-state.reducer';
 import { shoppingCartReducer } from './reducers/shopping-cart.reducer';
 import { SharedModule } from './modules/shared/shared.module';
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { RefreshTokenService } from './auth/refreshtoken.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -53,10 +54,18 @@ import { SharedModule } from './modules/shared/shared.module';
       shoppingCart: shoppingCartReducer,
     }),
     SharedModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('JWT_TOKEN');
+        },
+      },
+    }),
   ],
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    RefreshTokenService,
   ],
   bootstrap: [AppComponent],
   exports: [],

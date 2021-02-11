@@ -30,7 +30,7 @@ export class ProductService {
     );
   }
 
-  
-
-
+  getProductById(id: number): Observable<ProductModel> {
+    return this.httpClient.get<ProductModel>(this.url + '?id=' + id);
+  }
 }

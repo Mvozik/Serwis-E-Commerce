@@ -25,7 +25,19 @@ export class OrderComponent implements OnInit {
     private http: HttpClient,
     private store: Store<AppState>,
     private shoppingCartService: ShoppingCartService
-  ) {
+  ) {}
+  shoppingCard: Observable<ShoppingCartModel>;
+  sum: number = 0;
+  finalSum: number;
+  cart: ShoppingCartModel;
+  isShipping = false;
+  url = baseUrl;
+  userInfoForm: FormGroup;
+  shippingList: ShippingCompanyModel[];
+
+  shipping: ShippingCompanyModel;
+
+  ngOnInit(): void {
     this.userInfoForm = this.formBuilder.group({
       id: ['', Validators.required],
       name: ['', Validators.required],
@@ -67,18 +79,6 @@ export class OrderComponent implements OnInit {
       });
     });
   }
-  shoppingCard: Observable<ShoppingCartModel>;
-  sum: number = 0;
-  finalSum: number;
-  cart: ShoppingCartModel;
-  isShipping = false;
-  url = baseUrl;
-  userInfoForm: FormGroup;
-  shippingList: ShippingCompanyModel[];
-
-  shipping: ShippingCompanyModel;
-
-  ngOnInit(): void {}
 
   submit() {
     let model: PostOrderModel = {

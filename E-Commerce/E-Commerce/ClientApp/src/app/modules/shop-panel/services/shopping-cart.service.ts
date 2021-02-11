@@ -34,4 +34,25 @@ export class ShoppingCartService {
       this.url + '/clear-shopping-cart?shoppingCartId=' + id
     );
   }
+
+  getAllShoppingCarts(): Observable<ShoppingCartModel[]> {
+    return this.httpClient.get<ShoppingCartModel[]>(this.url + '/all');
+  }
+
+  addNewShoppingCart(): Observable<ShoppingCartModel> {
+    return this.httpClient.post<ShoppingCartModel>(
+      this.url + '/ShoppingCart',
+      {}
+    );
+  }
+
+  deleteShoppingCart(id: number): Observable<number> {
+    return this.httpClient.delete<number>(this.url + '/ShoppingCart?id=' + id);
+  }
+  changeActiveShoppingCart(id: number): Observable<ShoppingCartModel> {
+    return this.httpClient.patch<ShoppingCartModel>(
+      this.url + '/ShoppingCart?id=' + id,
+      {}
+    );
+  }
 }

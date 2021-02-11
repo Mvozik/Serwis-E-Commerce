@@ -1,0 +1,76 @@
+<form
+  style="display: flex; flex-direction: column; margin: 20px"
+  [formGroup]="userInfoForm"
+>
+  <mat-form-field>
+    <mat-label>Imie</mat-label>
+    <input formControlName="name" matInput type="text" placeholder="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nazwisko</mat-label>
+    <input
+      matInput
+      formControlName="surName"
+      type="text"
+      placeholder="surName"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Miasto</mat-label>
+    <input matInput formControlName="city" type="text" placeholder="city" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Kod Pocztowy</mat-label>
+    <input
+      matInput
+      formControlName="postCode"
+      type="text"
+      placeholder="postCode"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ulica</mat-label>
+    <input matInput formControlName="street" type="text" placeholder="street" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Numer Budynku</mat-label>
+    <input
+      matInput
+      formControlName="buildingNumber"
+      type="text"
+      placeholder="buildingNumber"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Numer Mieszkania</mat-label>
+    <input
+      matInput
+      formControlName="flatNumber"
+      type="text"
+      placeholder="flatNumber"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Numer Telefonu</mat-label>
+    <input
+      matInput
+      formControlName="phoneNumber"
+      type="text"
+      placeholder="phoneNumber"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>NIP</mat-label>
+    <input matInput formControlName="nip" type="text" placeholder="nip" />
+  </mat-form-field>
+</form>
+
+<button mat-button (click)="putUserInfoForm()">Zapisz</button>

@@ -1,31 +1,36 @@
 <mat-toolbar>
   <mat-toolbar-row class="navigation">
-    <button mat-button routerLink="">
+    <button mat-button routerLink="" style="margin-right: auto">
       <img
         class="logo-image"
         src="../../../../../assets/photos/7cbf82dd32ab7e88.svg"
       />
     </button>
-    <div></div>
+
     <button mat-button routerLink="koszyk">
-      <mat-icon>shopping_basket</mat-icon><span>Koszyk</span>
+      <mat-icon>shopping_basket</mat-icon><span> Koszyk</span>
     </button>
-    <button mat-button (click)="click()">
-      <mat-icon>{{ maticon }}</mat-icon
-      ><span>{{ text }}</span>
+
+    <button routerLink="konto" mat-button *ngIf="state">
+      <mat-icon>account_circle</mat-icon>
+      <span> Twoje konto</span>
+    </button>
+
+    <button mat-button style="overflow: hidden" (click)="click()">
+      <mat-icon>{{ maticon }}</mat-icon>
+      <span>{{ text }}</span>
     </button>
   </mat-toolbar-row>
   <mat-toolbar-row class="category-container">
     <div class="categories">
-      
       <button
         *ngFor="let section of sections"
         [routerLink]="['produkty', section.id]"
-        mat-button>
+        mat-button
+      >
         <mat-icon>{{ section.icon }}</mat-icon
         ><span>{{ section.name }}</span>
       </button>
-
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

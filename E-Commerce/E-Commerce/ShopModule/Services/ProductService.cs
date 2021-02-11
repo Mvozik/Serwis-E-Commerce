@@ -17,7 +17,6 @@ namespace E_Commerce.ShopModule.Services
     public class ProductService : IProductService
     {
         private readonly DataContext _dbContext;
-        
 
         public ProductService(DataContext dbContext)
         {

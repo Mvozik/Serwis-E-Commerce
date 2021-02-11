@@ -23,6 +23,13 @@ import { OrderComponent } from './components/order/order.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
+import { UserAccountComponent } from './components/user-account/user-account.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { UserBasketsComponent } from './components/user-baskets/user-baskets.component';
+import { UserOptionsComponent } from './components/user-options/user-options.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -35,13 +42,20 @@ import { MatListModule } from '@angular/material/list';
     LoginPageComponent,
     ProductsComponent,
     OrderComponent,
+    UserAccountComponent,
+    UserOrdersComponent,
+    UserBasketsComponent,
+    UserOptionsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     ShopPanelRoutingModule,
+    MatMenuModule,
     SharedModule,
     MatStepperModule,
     MatRadioModule,
     MatListModule,
+    MatTableModule,
   ],
   exports: [
     MatFormFieldModule,

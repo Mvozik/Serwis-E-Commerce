@@ -1,4 +1,5 @@
 .content {
+  margin: 20px;
   display: grid;
   grid-template-columns: 300px 1fr;
   button {
@@ -12,10 +13,12 @@
 }
 .categories {
   height: fit-content;
+  margin: 5px;
 }
 .subcategory {
   padding-left: 40px;
 }
 .product {
   margin: 5px;
+  outline: none;
 }

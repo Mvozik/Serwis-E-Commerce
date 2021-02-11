@@ -40,8 +40,6 @@ namespace E_Commerce.ShopModule.Controllers
             
             return Ok(response);
             
-
-            
         }
 
         [HttpPost("add-to-mainpage")]

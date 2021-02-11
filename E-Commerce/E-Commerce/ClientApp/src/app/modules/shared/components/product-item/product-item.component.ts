@@ -9,6 +9,7 @@ import { ShoppingCartService } from '../../../shop-panel/services/shopping-cart.
 import * as ShoppingCartActions from '../../../../actions/shoppingcart.actions';
 import { ShoppingCartItemModel } from '../../../shop-panel/models/Shopping-cart-item.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginStateModel } from 'src/app/models/login-state.model';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -17,8 +18,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductItemComponent implements OnInit {
   @Input() product: ProductModel;
   @Input() disabled: boolean = false;
+
   shoppingCart: Observable<ShoppingCartModel>;
   shoppingCartId: any;
+  loginStatus: Observable<LoginStateModel>;
+
   constructor(
     private shoppingService: ShoppingCartService,
     private store: Store<AppState>,
@@ -38,7 +42,7 @@ export class ProductItemComponent implements OnInit {
   addProduct() {
     let model: AddProductToCartModel = {
       productId: this.product.id,
-      shoppingCartId: this.shoppingCartId,
+      quantity: 1,
     };
 
     this.shoppingService

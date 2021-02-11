@@ -1,4 +1,4 @@
 export interface AddProductToCartModel {
-  shoppingCartId: number;
   productId: number;
+  quantity: number;
 }

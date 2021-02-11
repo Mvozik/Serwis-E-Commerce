@@ -54,7 +54,7 @@ export class AuthService {
       );
   }
 
-  private storeTokens(tokens: Tokens) {
+  storeTokens(tokens: Tokens) {
     localStorage.setItem(this.JWT_TOKEN, tokens.token);
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
   }

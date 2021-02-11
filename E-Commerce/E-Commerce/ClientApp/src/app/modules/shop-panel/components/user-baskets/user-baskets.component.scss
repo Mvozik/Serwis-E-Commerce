@@ -1,0 +1,32 @@
+table {
+  margin: 10px;
+  width: 1000px;
+
+  .row:hover {
+    background-color: rgb(236, 236, 236);
+  }
+}
+
+.options {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  display: flex;
+  background-color: white;
+  .circle {
+    margin: auto;
+    background-color: rgb(116, 116, 116);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+  }
+}
+
+.options:hover {
+  background-color: rgb(206, 206, 206);
+}

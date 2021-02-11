@@ -9,15 +9,27 @@ import {
 import { AuthService } from './../services/auth.service';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { RefreshTokenService } from './refreshtoken.service';
+
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private jwtHelper: JwtHelperService,
+    private refreshToken: RefreshTokenService
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (this.authService.getJwtToken()) {
+      if (this.jwtHelper.isTokenExpired()) {
+        this.refreshToken
+          .refreshToken()
+          .subscribe((response) => this.authService.storeTokens(response));
+      }
       request = this.addToken(request, this.authService.getJwtToken());
     }
 
@@ -30,6 +42,11 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       })
     );
+  }
+
+  private tokenExpired(token: string) {
+    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+    return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
 
   private addToken(request: HttpRequest<any>, token: string) {

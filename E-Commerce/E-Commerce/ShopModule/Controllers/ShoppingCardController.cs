@@ -20,7 +20,7 @@ namespace E_Commerce.ShopModule.Controllers
 
         private readonly IShoppingCartService _shoppingCardService;
 
-        
+
         public ShoppingCartController(IShoppingCartService shoppingCardsService)
         {
             _shoppingCardService = shoppingCardsService;
@@ -29,20 +29,33 @@ namespace E_Commerce.ShopModule.Controllers
         [HttpGet("active")]
         public async Task<IActionResult> GetUserActiveShoppingCard()
         {
-            var shoppingCard = await _shoppingCardService.GetUserShoppingCard();
-           
+            var shoppingCard = await _shoppingCardService.GetUserShoppingCardAsync();
+
             return Ok(shoppingCard);
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetUserShoppingCarts()
+        {
+            var response = await _shoppingCardService.GetUserShoppingCardsAsync();
+            if (response == null)
+            {
+                Unauthorized();
+            }
+            return Ok(response);
+        }
+
         [HttpPost("add-to-shopping-card")]
-        public async Task<IActionResult> PostAdvertToShoppingCard(AddProductToShoppingCard addAdvertToShoppingCard)
+        public async Task<IActionResult> PostAdvertToShoppingCard(AddProductToShoppingCartDto addAdvertToShoppingCard)
         {
             var shoppingCard = await _shoppingCardService.AddProductToShoppingCard(addAdvertToShoppingCard);
-            if(shoppingCard==null)
+
+            if (shoppingCard == null)
             {
                 return Unauthorized();
             }
-            if(shoppingCard.Succes==true)
+
+            if (shoppingCard.Succes == true)
             {
                 return Ok(shoppingCard.shoppingCartItem);
             }
@@ -50,10 +63,10 @@ namespace E_Commerce.ShopModule.Controllers
         }
 
         [HttpPost("change-quantity")]
-        public async Task<IActionResult> ChangeQuantity (ChangeQuantityDto changeQuantity)
+        public async Task<IActionResult> ChangeQuantity(ChangeQuantityDto changeQuantity)
         {
             var response = await _shoppingCardService.ChangeQuantityAsync(changeQuantity);
-            if(response==null)
+            if (response == null)
             {
                 return BadRequest();
             }
@@ -61,10 +74,10 @@ namespace E_Commerce.ShopModule.Controllers
         }
 
         [HttpDelete("clear-shopping-cart")]
-        public async Task<IActionResult> ClearShoppingCart (int shoppingCartId)
+        public async Task<IActionResult> ClearShoppingCart(int shoppingCartId)
         {
             var response = await _shoppingCardService.DeleteAllProductsFromShoppingCartAsync(shoppingCartId);
-            if(response==false)
+            if (response == false)
             {
                 return BadRequest();
             }
@@ -72,14 +85,48 @@ namespace E_Commerce.ShopModule.Controllers
         }
 
         [HttpDelete("shoppingcartitem")]
-        public async Task<IActionResult> DeleteShoppingCartItem (int id)
+        public async Task<IActionResult> DeleteShoppingCartItem(int id)
         {
             var response = await _shoppingCardService.DeleteProductFromShoppingCartAsync(id);
-            if(response.Success==true)
+            if (response.Success == true)
             {
                 return Ok(response.Id);
             }
             return BadRequest(response.Errors);
         }
+
+        [HttpPost("ShoppingCart")]
+        public async Task<IActionResult> PostShoppingCart()
+        {
+            var response = await _shoppingCardService.AddShoppingCartAsync();
+            if (response == null)
+            {
+                BadRequest();
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("ShoppingCart")]
+        public async Task<IActionResult> PostShoppingCart(int id)
+        {
+            var response = await _shoppingCardService.DeleteShoppingCartAsync(id);
+            if (response == 0)
+            {
+                BadRequest();
+            }
+            return Ok(response);
+        }
+
+        [HttpPatch("ShoppingCart")]
+        public async Task<IActionResult> ChangeActiveShoppingCart(int id)
+        {
+            var response = await _shoppingCardService.ChangeActiveShoppingCartAsync(id);
+            if (response == null)
+            {
+                BadRequest();
+            }
+            return Ok(response);
+        }
+
     }
 }

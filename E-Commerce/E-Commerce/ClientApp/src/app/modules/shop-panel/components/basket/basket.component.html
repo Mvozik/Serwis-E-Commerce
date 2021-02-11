@@ -2,11 +2,11 @@
   <h1>Twój koszyk jest pusty!</h1>
 </div>
 
-<div class="basket" >
+<div class="basket" *ngIf="isLogged">
   <div class="item-list">
     <div class="basket-options">
       <h1>Koszyk</h1>
-      <button mat-button>
+      <button mat-button (click)="saveShoppingCart()">
         <h3><mat-icon>favorite_border_outline</mat-icon>Zapisz koszyk</h3>
       </button>
       <button mat-button (click)="clearShoppingCart()">
@@ -46,7 +46,8 @@
   </mat-card>
 </div>
 
-
-<h1>Aby dodać produkty do koszyka</h1>
-<br>
-<button mat-button>Zaloguj się!</button>
+<div *ngIf="!isLogged" class="logout">
+  <h1>Aby dodać produkty do koszyka</h1>
+  <br />
+  <button mat-button routerLink="/logowanie">Zaloguj się!</button>
+</div>

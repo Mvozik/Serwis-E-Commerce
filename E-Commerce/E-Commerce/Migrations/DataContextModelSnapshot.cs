@@ -229,6 +229,9 @@ namespace E_Commerce.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Realized")
                         .HasColumnType("bit");
 

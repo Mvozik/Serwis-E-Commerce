@@ -1,0 +1,12 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  button {
+    text-align: left;
+    width: 200px;
+    margin: 10px 0 0px 0;
+  }
+}
+.container {
+  display: flex;
+}

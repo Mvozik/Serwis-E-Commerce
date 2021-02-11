@@ -18,6 +18,7 @@
   </mat-card>
   <div class="product-list" *ngIf="products">
     <app-product-item
+      [disabled]="false"
       class="product"
       *ngFor="let product of products"
       [product]="product"
